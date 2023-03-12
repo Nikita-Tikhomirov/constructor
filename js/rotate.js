@@ -13,7 +13,6 @@ function rotate(whatRotate, btn) {
   window.addEventListener("touchend", stopRotation, {once: true});
   
   if (btn) {
-    btn.addEventListener("ondragstart", () => {return false})
     btn.addEventListener("mouseup", stopRotation, {once: true});
   }
 

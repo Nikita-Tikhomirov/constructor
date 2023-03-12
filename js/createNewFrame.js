@@ -4,6 +4,9 @@ function createNewFrame(img) {
   const formatInner = format.querySelector('.innerFrame__container');
   const count = sideNow.querySelectorAll('.generated-img-wrap').length;
 
+  const activeFrameWrap = document.querySelector('.image-controls.active');
+  if (activeFrameWrap) activeFrameWrap.classList.remove('active');
+
   const newFrame = document.createElement('div');
   newFrame.classList.add('generated-img-wrap');
   newFrame.id = `count_${count}`
@@ -49,26 +52,16 @@ function createNewFrame(img) {
     imageControls.style.height = newFrame.offsetHeight + 'px';
   },100)
 
-  imageControls.addEventListener('click', () => {
-    const allFramesWraps = document.querySelectorAll('.image-controls')
-    allFramesWraps.forEach(item => {
-      item.classList.remove('active');
-      imageControls.classList.add('active');
-    })
-    
-    let counterData = imageControls.getAttribute('data-count')
-    let imageChosen = document.querySelector(`#${counterData}`)
-    let allImagesInside = container.querySelectorAll('.generated-img-wrap')
-    allImagesInside.forEach(el => {
-      el.classList.remove('active')
-    });
-    imageChosen.classList.add('active')
-
+  imageControls.addEventListener('mousedown', () => {
+    const imagesInside = container.querySelector('.generated-img-wrap.active');
+    if (imagesInside) imagesInside.classList.remove('active');
+    newFrame.classList.add('active');
   })
 
   dragNdropFormat(imageControls);
   controlScaleFunction(newFrame, imageControls, imageScale, imageScaleWidth, imageScaleHeight);
 
+  imageRotate.addEventListener("ondragstart", () => {return false});
   imageRotate.addEventListener("mousedown", () => {
     rotate(imageControls, imageRotate)
     rotate(newFrame)

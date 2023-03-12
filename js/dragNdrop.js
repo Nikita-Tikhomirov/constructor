@@ -6,21 +6,22 @@ function dragNdropFormat(formatFrameActive) {
     let initialY;
     let xOffset = 0;
     let yOffset = 0;
-
-    formatFrameActive.ondragstart = function () {
-        return false;
-    };
-
+    formatFrameActive.addEventListener("ondragstart", () => {return false});
     formatFrameActive.addEventListener("mousedown", dragStart);
     formatFrameActive.addEventListener("mouseup", dragEnd);
     formatFrameActive.addEventListener("mouseout", dragEnd);
     formatFrameActive.addEventListener("mousemove", drag);
+
     formatFrameActive.addEventListener("touchstart", dragStart);
     formatFrameActive.addEventListener("touchend", dragEnd);
     formatFrameActive.addEventListener("touchmove", drag);
 
     function dragStart(e) {
-        if (formatFrameActive.classList.contains('active') && (e.target === formatFrameActive || e.target.classList.contains('innerFrame__container'))) {
+        const activeFrameWrap = document.querySelector(`.${formatFrameActive.classList[0]}.active`);
+        if (activeFrameWrap) activeFrameWrap.classList.remove('active');
+        formatFrameActive.classList.add('active');
+
+        if (e.target === formatFrameActive || e.target.classList.contains('innerFrame__container') || e.target.classList.contains('formatWrap__container')) {
             if (e.touches) {
                 initialX = e.clientX - xOffset || e.touches[0].clientX - xOffset;
                 initialY = e.clientY - yOffset || e.touches[0].clientY - yOffset;
@@ -30,7 +31,6 @@ function dragNdropFormat(formatFrameActive) {
             }
             isDragging = true;
         }
-
     }
 
     function dragEnd(e) {
@@ -63,9 +63,6 @@ function dragNdropFormat(formatFrameActive) {
     }
 
     function setTranslate(xPos, yPos, el) {
-        if (!getComputedStyle(el).getPropertyValue('--rotate')) {
-            el.style.setProperty('--rotate', '0deg');
-        }
         el.style.setProperty('--translate', `${xPos}px,${yPos}px,0`);
     }
 }

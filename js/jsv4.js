@@ -40,13 +40,9 @@ function formatPicker() {
 formatPicker()
 
 function createFormatFrame(formatClass, container) {
-  function removeActivesBeforeCreate() {
-    const allFramesWraps = document.querySelectorAll('.formatWrap')
-    allFramesWraps.forEach(item => {
-      item.classList.remove('active');
-    })
-  }
-  removeActivesBeforeCreate()
+  const activeFrameWrap = document.querySelector('.formatWrap.active');
+  if (activeFrameWrap) activeFrameWrap.classList.remove('active');
+
   const formatWrap = document.createElement('div')
   formatWrap.classList.add('formatWrap')
   formatWrap.classList.add('active')
@@ -68,14 +64,6 @@ function createFormatFrame(formatClass, container) {
   formatWrap.appendChild(formatInnerFrameContainer);
   formatContainer.appendChild(formatFrame);
   container.appendChild(formatWrap);
-
-  formatWrap.addEventListener('click', () => {
-    const allFramesWraps = document.querySelectorAll('.formatWrap')
-    allFramesWraps.forEach(item => {
-      item.classList.remove('active');
-      formatWrap.classList.add('active');
-    })
-  })
 }
 
 // function addFormatButton(pickKlass, buttonText) {
@@ -188,6 +176,8 @@ function createControlsToFormat(formatFrame) {
   // formatFrame.appendChild(moveFormatBtn)
   formatFrame.appendChild(closeFormatBtn)
   formatFrame.appendChild(rotateFormatBtn)
+  
+  rotateFormatBtn.addEventListener("ondragstart", () => {return false})
 
   dragNdropFormat(formatFrame)
   deleteFormatButton(closeFormatBtn)
