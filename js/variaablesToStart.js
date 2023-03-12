@@ -6,3 +6,6 @@ let sideNow = document.querySelector('.fs')
 
 const uploadPopupBtn = document.querySelector('.product-upload-img');
 const uploadPopup = document.querySelector('.product-upload-img-popup');
+
+
+const priceNow = document.querySelector('.price-now')

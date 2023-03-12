@@ -1,12 +1,6 @@
 function formatPickerStart() {
   createFormatFrame('a3', sideNow)
-  const formatButton = document.createElement('div')
-  formatButton.classList.add('format-picker-button')
-  formatButton.classList.add('active')
-  formatButton.classList.add('a3')
-  formatButton.setAttribute('format-buton', formatNow)
-  formatButton.innerHTML = ('A3')
-  sideNow.appendChild(formatButton)
+  priceCalculator(priceNow)
 }
 formatPickerStart()
 
@@ -27,10 +21,10 @@ function formatPicker() {
         // Активный формат 
         formatNow = classToCreateFormatFrame
         console.log(formatNow)
-        let textToFormatControls = item.innerHTML;
+
 
         createFormatFrame(classToCreateFormatFrame, sideNow);
-        addFormatButtonForBody(classToCreateFormatFrame, textToFormatControls);
+
       });
     });
   }
@@ -47,6 +41,13 @@ function createFormatFrame(formatClass, container) {
   formatWrap.classList.add('formatWrap')
   formatWrap.classList.add('active')
   formatWrap.classList.add(formatNow)
+  if(formatNow == 'a3'){
+    formatWrap.setAttribute('format-price','1000')
+  }else if(formatNow == 'a4v'){
+    formatWrap.setAttribute('format-price','700')
+  }else{
+    formatWrap.setAttribute('format-price','500')
+  }
 
   const formatFrame = document.createElement('div');
   formatFrame.classList.add('constructor__product-container-image-wrap');
@@ -64,70 +65,9 @@ function createFormatFrame(formatClass, container) {
   formatWrap.appendChild(formatInnerFrameContainer);
   formatContainer.appendChild(formatFrame);
   container.appendChild(formatWrap);
+  priceCalculator(priceNow)
 }
 
-// function addFormatButton(pickKlass, buttonText) {
-//   const formatButton = document.createElement('div')
-//   formatButton.classList.add('format-picker-button')
-//   const formatButtons = sideNow.querySelectorAll('.format-picker-button');
-//   formatButtons.forEach(function (button) {
-//     button.classList.remove('active');
-//   });
-
-//   formatButton.classList.add('active')
-//   formatButton.classList.add(pickKlass)
-//   formatButton.setAttribute('format-buton', formatNow)
-//   formatButton.innerHTML = buttonText
-//   sideNow.appendChild(formatButton)
-//   bottomfomatPicker()
-// }
-
-function addFormatButtonForBody(pickKlass, buttonText) {
-  const formatButton = document.createElement('div')
-  formatButton.classList.add('format-picker-button')
-  const formatButtons = sideNow.querySelectorAll('.format-picker-button');
-
-  formatButtons.forEach(function (button) {
-    button.classList.remove('active');
-    if (button.classList.contains('lh') || button.classList.contains('rh')) {
-      console.log(12)
-    } else {
-      button.remove()
-    }
-  });
-
-  formatButton.classList.add('active')
-  formatButton.classList.add(pickKlass)
-  formatButton.setAttribute('format-buton', formatNow)
-  formatButton.innerHTML = buttonText
-  sideNow.appendChild(formatButton)
-  bottomfomatPicker()
-}
-
-function bottomfomatPicker() {
-  let allBottomsButtonFormats = sideNow.querySelectorAll('.format-picker-button')
-  allBottomsButtonFormats.forEach(function (item, i, arr) {
-    item.addEventListener('click', () => {
-
-      deleteActiveClassFromSiblings(item, 'format-picker-button')
-
-      item.classList.add('active')
-      // Смена формата по нажатию 
-      formatNow = item.getAttribute('format-buton')
-
-      // Удаляем активный класс у редакторов и форматов
-      let allRedactors = sideNow.querySelectorAll('.image-controls')
-      let allFormats = sideNow.querySelectorAll('.constructor__product-container-image-wrap')
-
-      removeActiveFromArr(allRedactors)
-      removeActiveFromArr(allFormats)
-      // проверка на формат черз переменную
-
-      addActiveIfFormatTheSame(allRedactors)
-      addActiveIfFormatTheSame(allFormats)
-    })
-  })
-}
 
 // Удаление активного класса у соседей
 function deleteActiveClassFromSiblings(el, classTodel) {
@@ -187,8 +127,9 @@ function createControlsToFormat(formatFrame) {
 function deleteFormatButton(buttonDelete) {
   buttonDelete.addEventListener('click', () => {
     buttonDelete.parentElement.remove()
-  })
+  priceCalculator(priceNow)
 
+  })
 }
 
 function startRotate(format, roatateBtn) {
