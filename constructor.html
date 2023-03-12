@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T-Shirt Constructor</title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="style-calc.css">
+</head>
+
+<body>
+  <section class="constructor pt-4">
+    <div class="container constructor__cont ">
+      <div class="row">
+        <div class="col-lg-2 constructor__menu-left">
+          <div class="constructor__menu-title">Выберите</div>
+
+          <ul class="constructor__menu-list">
+            <li class="constructor__menu-item product-type">
+              Изделие
+            </li>
+            <li class="constructor__menu-item">Возраст</li>
+            <li class="constructor__menu-item product-color">Цвет</li>
+            <li class="constructor__menu-item">Размер</li>
+            <li class="constructor__menu-item product-format product-format-fs active">
+                <span class="submenu-title">Формат</span>
+              <ul class="constructor__menu-item-submenu ">
+                <li frameformat="a3"  class="">A3</li>
+                <li frameformat="a4v" >A4</li>
+                <li frameformat="a5v" >A5</li>
+
+              </ul>
+            </li>
+
+            <li class="constructor__menu-item product-format product-format-bs">
+              <span class="submenu-title">Формат</span>
+            <ul class="constructor__menu-item-submenu ">
+              <li frameformat="a3"  class="">A3</li>
+              <li frameformat="a4v" >A4</li>
+              <li frameformat="a5v" >A5</li>
+
+            </ul>
+          </li>
+
+          </ul>
+          <div class="constructor__menu-title">Добавьте</div>
+          <ul class="constructor__menu-list">
+            <li class="constructor__menu-item product-upload-img">Картинку</li>
+            <li class="constructor__menu-item">Фигуру</li>
+            <li class="constructor__menu-item addtext_btn">Текст</li>
+          </ul>
+          <div class="constructor__menu-price-wrap">Цена <span>500</span>р</div>
+          <div class="constructor__menu-button">Заказать</div>
+        </div>
+        <div class="col-lg-7">
+          <div class="constructor__breadcrumbs">
+            <ul>
+              <li>Выбрано:</li>
+              <li class="category-type-now">Футболки</li>
+              <li class="category-color-now">Черный</li>
+              <!-- <li class="category-format-now">A3</li>
+              <li class="category-size-now">XL</li> -->
+
+
+            </ul>
+          </div>
+
+          <div class="constructor__product-container bg-center-custom fs active" style="background: url('tshirt.png')">
+
+
+          </div>
+
+          <div class="constructor__product-container bg-center-custom bs" style="background: url('tshirt_bs.png')">
+
+
+          </div>
+          <div class="constructor__menu-popups-warp">
+            <!-- выбор типа изделия -->
+            <div class="product-type-popup popups">
+              <!-- карточка с типом изделия -->
+              <div class="product-type-popup__card">
+                <div class="product-type-popup__img-wrap">
+                  <img src="tshirt.png" alt="">
+                </div>
+                <div class="product-type-popup__title">Футболка</div>
+                <div class="system" style="display:none">
+                  <div class="typedFs">background: url('tshirt.png')</div>
+                  <div class="typedBs">background: url('tshirt_bs.png')</div>
+                </div>
+              </div>
+              <!-- карточка с типом изделия -->
+              <div class="product-type-popup__card">
+                <div class="product-type-popup__img-wrap">
+                  <img src="hoody.png" alt="">
+                </div>
+                <div class="product-type-popup__title">Толстовка</div>
+                <div class="system" style="display:none">
+                  <div class="typedFs">background: url('hoody.png')</div>
+                  <div class="typedBs">background: url('hoody_bs.png')</div>
+                </div>
+              </div>
+              <!-- карточка с типом изделия -->
+              <div class="product-type-popup__card">
+                <div class="product-type-popup__img-wrap">
+                  <img src="sweetshot.png" alt="">
+                </div>
+                <div class="product-type-popup__title">Свитшот</div>
+                <div class="system" style="display:none">
+                  <div class="typedFs">background: url('sweetshot.png')</div>
+                  <div class="typedBs">background: url('sweetshot.png')</div>
+                </div>
+              </div>
+
+
+            </div>
+            <!-- Выбор цвета -->
+            <div class="product-color-popup product-color-popup__tshirts popups">
+              <!-- карточка с цветом изделия -->
+              <div class="product-color-popup__card">
+                <div class="product-color-popup__img-wrap">
+                  <img src="tshirt.png" alt="">
+                </div>
+                <div class="product-color-popup__title">Черный</div>
+                <div class="system" style="display:none">
+                  <div class="coloredFs">background: url('tshirt.png')</div>
+                  <div class="coloredBs">background: url('tshirt_bs.png')</div>
+                </div>
+              </div>
+              <!-- карточка с цветом изделия -->
+              <div class="product-color-popup__card">
+                <div class="product-color-popup__img-wrap">
+                  <img src="tshirt_w.png" alt="">
+                </div>
+                <div class="product-color-popup__title">Белый</div>
+                <div class="system" style="display:none">
+                  <div class="coloredFs">background: url('tshirt_w.png')</div>
+                  <div class="coloredBs">background: url('tshirt_w_bs.png')</div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="product-color-popup product-color-popup__hoodys popups">
+              <!-- карточка с цветом изделия -->
+              <div class="product-color-popup__card">
+                <div class="product-color-popup__img-wrap">
+                  <img src="hoody.png" alt="">
+                </div>
+                <div class="product-color-popup__title">Черный</div>
+                <div class="system" style="display:none">
+                  <div class="coloredFs">background: url('hoody.png')</div>
+                  <div class="coloredBs">background: url('hoody_bs.png')</div>
+                </div>
+              </div>
+              <!-- карточка с цветом изделия -->
+              <div class="product-color-popup__card">
+                <div class="product-color-popup__img-wrap">
+                  <img src="hoody_w.png" alt="">
+                </div>
+                <div class="product-color-popup__title">Белый</div>
+                <div class="system" style="display:none">
+                  <div class="coloredFs">background: url('hoody_w.png')</div>
+                  <div class="coloredBs">background: url('hoody_w_bs.png')</div>
+                </div>
+              </div>
+            </div>
+            <div class="product-color-popup product-color-popup__sweetshots popups">
+              <!-- карточка с цветом изделия -->
+              <div class="product-color-popup__card">
+                <div class="product-color-popup__img-wrap">
+                  <img src="sweetshot.png" alt="">
+                </div>
+                <div class="product-color-popup__title">Черный</div>
+                <div class="system" style="display:none">
+                  <div class="coloredFs">background: url('sweetshot.png')</div>
+                  <div class="coloredBs">background: url('sweetshot.png')</div>
+                </div>
+              </div>
+              <!-- карточка с цветом изделия -->
+              <div class="product-color-popup__card">
+                <div class="product-color-popup__img-wrap">
+                  <img src="sweetshot_w.png" alt="">
+                </div>
+                <div class="product-color-popup__title">Белый</div>
+                <div class="system" style="display:none">
+                  <div class="coloredFs">background: url('sweetshot_w.png')</div>
+                  <div class="coloredBs">background: url('sweetshot_w.png')</div>
+                </div>
+              </div>
+            </div>
+            <!--Загруженные изображения и drug and drop-->
+            <div class="product-upload-img-popup popups">
+              <div class="product-upload-img-popup__sidebar">
+                <div class="upload-container">
+                  <div class="upload-text">Перетащите или загрузите</div>
+                  <input type="file" id="file-input" accept="image/*">
+                </div>
+
+              </div>
+
+              <div class="popup-images">
+                <div class="popup-images__img-wrap"><img src="print1.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="test.png" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="test2.png" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+        <div class="col-lg-3 constructor__menu-left">
+          <div class="colorpicker-wrap">
+            <div class="colorpicker-wrap__title">
+              Выбирите цвет.
+            </div>
+          </div>
+          <input id="foo" data-jscolor="{value:'rgba(192,160,255,0.5)'}" , onInput="update(this.jscolor)">
+          <input id="input-text" type="text" placeholder="Ваш текст">
+
+          <!-- <em id="pr2" style="display:block; width:100%; height:100px">Ваш цвет</em> -->
+
+          <div id="output-text">
+            Выбирите шрифт
+          </div>
+
+          <select id="input-style" class="input"">
+            <option value="Times New Roman" selected="selected">
+              Times New Roman
+            </option>
+            <option value="Arial">Arial</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="cursive">cursive</option>
+          </select>
+          <div id="output-text">
+            Выбирите Размер шрифта
+          </div>
+
+          <select id="input-font" class="input">
+            <option value="14px" selected="selected">
+              14px
+            </option>
+            <option value="14px">14px</option>
+            <option value="18px">18px</option>
+            <option value="22px">22px</option>
+          </select>
+
+          <div class="side-picker-wrap">
+            <div class="side-pick-btn fsb active">Грудь</div>
+            <div class="side-pick-btn bsb">Спина</div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+    <div class="system" style="display:none">
+      <div class="tshirts-bgs">
+        <ul>
+          <li>background: url('tshirt.png')</li>
+          <li>background: url('tshirt_bs.png')</li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="hoody-bgs">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+
+      </div>
+      <div class="sweetshot-bgs">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+  <!-- <script src="js/propeller.min.js"></script> -->
+  <script src="js/jscolor.js"></script>
+  <script src="js/colorpicker.js"></script>
+
+  <script src="js/variaablesToStart.js"></script>
+  <script src="js/openPopups.js"></script>
+  <script src="js/closePopups.js"></script>
+  <script src="js/dragNdrop.js"></script>
+  <script src="js/jsv4.js"></script>
+  <script src="js/uploadImages.js"></script>
+  <script src="js/createNewFrame.js"></script>
+  <script src="js/pickImgFromPopup.js"></script>
+  <script src="js/controlScale.js"></script>
+  <script src="js/deletePrint.js"></script>
+  <script src="js/sidePicker.js"></script>
+  <script src="js/typeAndColorPicker.js"></script>
+
+  <script src="js/rotate.js"></script>
+
+
+  <script src="js/textRedactor.js"></script>
+
+
+
+</body>
+
+</html>

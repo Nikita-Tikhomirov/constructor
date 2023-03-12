@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  [[$headCustom]]
+  <link rel="stylesheet" href="[[++assets_url]]/custom/css/style-calc.css" />
+</head>
+<header>
+  [[$Navbar]]
+</header>
+
+<body>
+  <section class="constructor pt-4">
+    <div class="container constructor__cont ">
+      <div class="row">
+        <div class="col-lg-2 constructor__menu-left">
+          <div class="constructor__menu-title">Выберите</div>
+
+          <ul class="constructor__menu-list">
+            <li class="constructor__menu-item product-type">
+              Изделие
+            </li>
+            <li class="constructor__menu-item">Возраст</li>
+            <li class="constructor__menu-item product-color">Цвет</li>
+            <li class="constructor__menu-item">Размер</li>
+            <li class="constructor__menu-item product-format product-format-fs active">
+                <span class="submenu-title">Формат</span>
+              <ul class="constructor__menu-item-submenu ">
+                <li frameformat="a3"  class="">A3</li>
+                <li frameformat="a4v" >A4 Вертикально</li>
+                <li frameformat="a4h" >A4 Горизонтально</li>
+                <li frameformat="a5v" >A5 Вертикально</li>
+                <li frameformat="a5h" >A5 Горизонтально</li>
+                <li frameformat="lh"  class="arms">Левый рукав</li>
+                <li frameformat="rh"  class="arms">Правый рукав</li>
+              </ul>
+            </li>
+
+            <li class="constructor__menu-item product-format product-format-bs">
+              <span class="submenu-title">Формат</span>
+            <ul class="constructor__menu-item-submenu ">
+              <li frameformat="a3"  class="">A3</li>
+              <li frameformat="a4v" >A4 Вертикально</li>
+              <li frameformat="a4h" >A4 Горизонтально</li>
+              <li frameformat="a5v" >A5 Вертикально</li>
+              <li frameformat="a5h" >A5 Горизонтально</li>
+              <li frameformat="lh"  class="arms">Левый рукав</li>
+              <li frameformat="rh"  class="arms">Правый рукав</li>
+            </ul>
+          </li>
+
+          </ul>
+          <div class="constructor__menu-title">Добавьте</div>
+          <ul class="constructor__menu-list">
+            <li class="constructor__menu-item product-upload-img">Картинку</li>
+            <li class="constructor__menu-item">Фигуру</li>
+            <li class="constructor__menu-item addtext_btn">Текст</li>
+          </ul>
+          <div class="constructor__menu-price-wrap">Цена <span>500</span>р</div>
+          <div class="constructor__menu-button">Заказать</div>
+        </div>
+        <div class="col-lg-7">
+          <div class="constructor__breadcrumbs">
+            <ul>
+              <li>Выбрано:</li>
+              <li class="category-type-now">Футболки</li>
+              <li class="category-color-now">Черный</li>
+              <!-- <li class="category-format-now">A3</li>
+              <li class="category-size-now">XL</li> -->
+
+
+            </ul>
+          </div>
+
+          <div class="constructor__product-container bg-center-custom fs active" style="background: url([[*tshirtFs]])">
+
+
+          </div>
+
+          <div class="constructor__product-container bg-center-custom bs" style="background: url([[*tshirtBs]])">
+
+
+          </div>
+          <div class="constructor__menu-popups-warp">
+            <!-- выбор типа изделия -->
+            <div class="product-type-popup popups">
+              <!-- карточка с типом изделия -->
+              <div class="product-type-popup__card">
+                <div class="product-type-popup__img-wrap">
+                  <img src="[[*tshirtFs]]" alt="">
+                </div>
+                <div class="product-type-popup__title">Футболка</div>
+                <div class="system" style="display:none">
+                  <div class="typedFs">background: url([[*tshirtFs]])</div>
+                  <div class="typedBs">background: url([[*tshirtBs]])</div>
+                </div>
+              </div>
+              <!-- карточка с типом изделия -->
+              <div class="product-type-popup__card">
+                <div class="product-type-popup__img-wrap">
+                  <img src="[[*hoodyFs]]" alt="">
+                </div>
+                <div class="product-type-popup__title">Толстовка</div>
+                <div class="system" style="display:none">
+                  <div class="typedFs">background: url([[*hoodyFs]])</div>
+                  <div class="typedBs">background: url([[*hoodyBs]])</div>
+                </div>
+              </div>
+              <!-- карточка с типом изделия -->
+              <div class="product-type-popup__card">
+                <div class="product-type-popup__img-wrap">
+                  <img src="[[*sweetshotFs]]" alt="">
+                </div>
+                <div class="product-type-popup__title">Свитшот</div>
+                <div class="system" style="display:none">
+                  <div class="typedFs">background: url([[*sweetshotFs]])</div>
+                  <div class="typedBs">background: url([[*sweetshotBs]])</div>
+                </div>
+              </div>
+
+
+            </div>
+            <!-- Выбор цвета -->
+            <div class="product-color-popup product-color-popup__tshirts popups">
+                [[!getImageList?
+                &tvname=`migx_tshirtsColors`
+                &tpl=`migx_tshirtsColors_tpl`
+                &limit=`999`
+              ]]
+
+
+
+            </div>
+
+
+            <div class="product-color-popup product-color-popup__hoodys popups">
+              <!-- карточка с цветом изделия -->
+              [[!getImageList?
+              &tvname=`migx_hoodyColors`
+              &tpl=`migx_tshirtsColors_tpl`
+              &limit=`999`
+            ]]
+
+
+
+            </div>
+            <div class="product-color-popup product-color-popup__sweetshots popups">
+              <!-- карточка с цветом изделия -->
+              [[!getImageList?
+              &tvname=`migx_sweetshotsColors`
+              &tpl=`migx_tshirtsColors_tpl`
+              &limit=`999`
+            ]]
+
+            </div>
+            <!--Загруженные изображения и drug and drop-->
+            <div class="product-upload-img-popup popups">
+              <div class="product-upload-img-popup__sidebar">
+                <div class="upload-container">
+                  <div class="upload-text">Перетащите или загрузите</div>
+                  <input type="file" id="file-input" accept="image/*">
+                </div>
+
+              </div>
+
+              <div class="popup-images">
+
+                [[!getImageList?
+                &tvname=`migx_pickPrint`
+                &tpl=`migx_pickPrint_tpl`
+              ]]
+
+
+
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+        <div class="col-lg-3 constructor__menu-left">
+          <div class="colorpicker-wrap">
+            <div class="colorpicker-wrap__title">
+              Выбирите цвет.
+            </div>
+          </div>
+          <input id="foo" data-jscolor="{value:'rgba(192,160,255,0.5)'}" , onInput="update(this.jscolor)">
+
+          <em id="pr2" style="display:block; width:100%; height:100px">Ваш цвет</em>
+
+          <div id="output-text">
+            Выбирите шрифт
+          </div>
+
+          <select id="input-style" class="input">
+            <option value="Times New Roman" selected="selected">
+              Times New Roman
+            </option>
+            <option value="Arial">Arial</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="cursive">cursive</option>
+          </select>
+          <div id="output-text">
+            Выбирите Размер шрифта
+          </div>
+
+          <select id="input-font" class="input">
+            <option value="14px" selected="selected">
+              14px
+            </option>
+            <option value="14px">14px</option>
+            <option value="18px">18px</option>
+            <option value="22px">22px</option>
+          </select>
+
+          <div class="side-picker-wrap">
+            <div class="side-pick-btn fsb active">Грудь</div>
+            <div class="side-pick-btn bsb">Спина</div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+    <div class="system" style="display:none">
+      <div class="tshirts-bgs">
+        <ul>
+          <li>background: url('tshirt.png')</li>
+          <li>background: url('tshirt_bs.png')</li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="hoody-bgs">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+
+      </div>
+      <div class="sweetshot-bgs">
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+</body>
+[[$footerCustom]]
+<script src="[[++assets_url]]/custom/js/jscolor.js"></script>
+<script src="[[++assets_url]]/custom/js/colorpicker.js"></script>
+<script src="[[++assets_url]]/custom/js/jsv4.js"></script>
+
+</html>  
+ 
