@@ -657,6 +657,10 @@ opacity: 0;
 
 .image-controls:not(.active){
   opacity: 0;
+  z-index: 1;
+}
+.image-controls.active{
+  z-index: 2;
 }
 .generated-img-wrap{
   z-index: 1;
@@ -665,7 +669,9 @@ opacity: 0;
   z-index: 2;
 }
 
-
+.image-controls:not(.active) div{
+  display: none;
+}
 /* @media screen and (max-width: 992px) {
 
 } */
