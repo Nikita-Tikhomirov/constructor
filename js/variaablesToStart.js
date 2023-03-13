@@ -9,3 +9,8 @@ const uploadPopup = document.querySelector('.product-upload-img-popup');
 
 
 const priceNow = document.querySelector('.price-now')
+
+
+const braedCrumbsType = document.querySelector('.category-type-now')
+const braedCrumbsColor = document.querySelector('.category-color-now')
+const braedCrumbsSize = document.querySelector('.category-size-now')

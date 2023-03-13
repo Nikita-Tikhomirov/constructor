@@ -15,8 +15,6 @@ function typePicker() {
   allTypesArr.forEach(function (item, i, arr) {
     item.addEventListener('click', () => {
       const chosenType = item.querySelector('.product-type-popup__title').innerText
-
-
       item.parentElement.classList.remove('active')
       typeOfProdNow = chosenType
       console.log(typeOfProdNow)
@@ -25,8 +23,8 @@ function typePicker() {
       let bgBuckideNow = item.querySelector('.typedBs').innerText
       document.querySelector('.fs').style = bgFrontSideNow
       document.querySelector('.bs').style = bgBuckideNow
-      thisIsTshirtNow()
-
+      // thisIsTshirtNow()
+      addToBreadcrumbs(braedCrumbsType,chosenType)
     })
   })
 }
@@ -55,8 +53,17 @@ function colorPicker() {
       let bgBuckideNow = item.querySelector('.coloredBs').innerText
       document.querySelector('.fs').style = bgFrontSideNow
       document.querySelector('.bs').style = bgBuckideNow
+
+      let colorNow = item.querySelector('.product-color-popup__title').innerHTML
+      addToBreadcrumbs(braedCrumbsColor,colorNow)
+
     })
   })
 }
 
 typePicker()
+
+
+function addToBreadcrumbs(crumb,value){
+  crumb.innerHTML = value
+}
