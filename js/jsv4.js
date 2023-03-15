@@ -12,7 +12,6 @@ function formatPicker() {
     allFormatOnSide = document.querySelectorAll('.product-format-bs .constructor__menu-item-submenu li')
   }
 
-  console.log(allFormatOnSide)
   // console.log(sideNow)
   function actionAfterClickFormat() {
     allFormatOnSide.forEach(function (item, i, arr) {
@@ -20,11 +19,7 @@ function formatPicker() {
         let classToCreateFormatFrame = item.getAttribute('frameformat');
         // Активный формат 
         formatNow = classToCreateFormatFrame
-        console.log(formatNow)
-
-
         createFormatFrame(classToCreateFormatFrame, sideNow);
-
       });
     });
   }
@@ -41,18 +36,16 @@ function createFormatFrame(formatClass, container) {
   formatWrap.classList.add('formatWrap')
   formatWrap.classList.add('active')
   formatWrap.classList.add(formatNow)
-  if(formatNow == 'a3'){
-    formatWrap.setAttribute('format-price','1000')
-  }else if(formatNow == 'a4v'){
-    formatWrap.setAttribute('format-price','700')
-  }else{
-    formatWrap.setAttribute('format-price','500')
+  if (formatNow == 'a3') {
+    formatWrap.setAttribute('format-price', '1000')
+  } else if (formatNow == 'a4v') {
+    formatWrap.setAttribute('format-price', '700')
+  } else {
+    formatWrap.setAttribute('format-price', '500')
   }
 
   const formatFrame = document.createElement('div');
-  formatFrame.classList.add('constructor__product-container-image-wrap');
-  formatFrame.classList.add(formatClass);
-  formatFrame.classList.add('active');
+  formatFrame.classList.add('constructor__product-container-image-wrap', formatClass, 'active');
 
   const formatContainer = document.createElement('div');
   formatContainer.classList.add('formatWrap__container');
@@ -67,7 +60,6 @@ function createFormatFrame(formatClass, container) {
   container.appendChild(formatWrap);
   priceCalculator(priceNow)
 }
-
 
 // Удаление активного класса у соседей
 function deleteActiveClassFromSiblings(el, classTodel) {
@@ -116,8 +108,10 @@ function createControlsToFormat(formatFrame) {
   // formatFrame.appendChild(moveFormatBtn)
   formatFrame.appendChild(closeFormatBtn)
   formatFrame.appendChild(rotateFormatBtn)
-  
-  rotateFormatBtn.addEventListener("ondragstart", () => {return false})
+
+  rotateFormatBtn.addEventListener("ondragstart", () => {
+    return false
+  })
 
   dragNdropFormat(formatFrame)
   deleteFormatButton(closeFormatBtn)
@@ -127,8 +121,7 @@ function createControlsToFormat(formatFrame) {
 function deleteFormatButton(buttonDelete) {
   buttonDelete.addEventListener('click', () => {
     buttonDelete.parentElement.remove()
-  priceCalculator(priceNow)
-
+    priceCalculator(priceNow)
   })
 }
 
@@ -140,5 +133,3 @@ function startRotate(format, roatateBtn) {
     rotate(format, roatateBtn)
   });
 }
-
-

@@ -8,9 +8,8 @@ function createNewFrame(img) {
   if (activeFrameWrap) activeFrameWrap.classList.remove('active');
 
   const newFrame = document.createElement('div');
-  newFrame.classList.add('generated-img-wrap');
+  newFrame.classList.add('generated-img-wrap', formatNow);
   newFrame.id = `count_${count}`
-  newFrame.classList.add(formatNow);
 
   newFrame.appendChild(img)
   container.appendChild(newFrame)
@@ -23,14 +22,12 @@ function createNewFrame(img) {
   const imageScaleWidth = document.createElement('div');
   const imageScaleHeight = document.createElement('div');
 
-
   imageScaleWidth.classList.add('image-scaleWidth')
   imageScaleHeight.classList.add('image-scaleHeight')
 
-  imageControls.classList.add('image-controls');
+  imageControls.classList.add('image-controls', 'active', formatNow);
   imageControls.setAttribute('data-count', `count_${count}`)
-  imageControls.classList.add('active');
-  imageControls.classList.add(formatNow);
+  
   imageRemove.classList.add('image-remove');
   imageRotate.classList.add('image-rotate');
   imageScale.classList.add('image-scale');
@@ -68,6 +65,5 @@ function createNewFrame(img) {
   imageRotate.addEventListener("touchstart", () => {
     rotate(imageControls, imageRotate)
   });
-
 }
 
