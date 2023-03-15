@@ -64,11 +64,9 @@ function createNewFrame(img) {
   imageRotate.addEventListener("ondragstart", () => {return false});
   imageRotate.addEventListener("mousedown", () => {
     rotate(imageControls, imageRotate)
-    rotate(newFrame)
   });
   imageRotate.addEventListener("touchstart", () => {
     rotate(imageControls, imageRotate)
-    rotate(newFrame)
   });
 
 }

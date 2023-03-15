@@ -5,6 +5,7 @@ function rotate(whatRotate, btn) {
 
   const wrap = whatRotate.querySelector('.constructor__product-container-image-wrap');
   const innerFrameContainer = whatRotate.querySelector('.innerFrame__container');
+  const image = document.querySelector(`#${whatRotate.getAttribute('data-count')}`)
 
   window.addEventListener("mousemove", rotation);
   window.addEventListener("touchmove", rotation);
@@ -20,9 +21,10 @@ function rotate(whatRotate, btn) {
     const x = e.clientX || e.touches[0].clientX;
     const y = e.clientY || e.touches[0].clientY;
 
-    const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI) + 110;
+    const angle = (Math.atan2(y - centerY, x - centerX) + Math.PI/2) * (180 / Math.PI) + 20;
     whatRotate.style.setProperty('--rotate', `${angle}deg`);
 
+    if (image) image.style.setProperty('--rotate', `${angle}deg`);
     if (wrap) wrap.style.setProperty('--rotate', `${-angle}deg`);
     if (innerFrameContainer) innerFrameContainer.style.setProperty('--rotate', `${-angle}deg`);
   }
