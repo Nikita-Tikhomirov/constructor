@@ -6,7 +6,7 @@ function dragNdropFormat(formatFrameActive) {
     let initialY;
     let xOffset = 0;
     let yOffset = 0;
-    formatFrameActive.addEventListener("ondragstart", () => {return false});
+    formatFrameActive.addEventListener("ondragstart", () => { return false });
     formatFrameActive.addEventListener("mousedown", dragStart);
     formatFrameActive.addEventListener("mouseup", dragEnd);
     formatFrameActive.addEventListener("mouseout", dragEnd);
@@ -31,6 +31,25 @@ function dragNdropFormat(formatFrameActive) {
             }
             isDragging = true;
         }
+
+
+        // Передаем Дефолтные значения в инпуты
+        let textareaInside = formatFrameActive.querySelector('.generated-img-wrap.active .text-area')
+
+        if (!textareaInside == '') {
+
+            let inputText = document.querySelector('.input-text')
+            let inputColor = document.querySelector('#foo')
+            let inputFamily = document.querySelector('.input-font-family')
+            let inputSize = document.querySelector('#input-font')
+
+            updateTextMenu(inputColor, inputText, inputFamily, inputSize, textareaInside)
+
+        }
+
+
+
+
     }
 
     function dragEnd(e) {
@@ -66,3 +85,42 @@ function dragNdropFormat(formatFrameActive) {
         el.style.setProperty('--translate', `${xPos}px,${yPos}px,0`);
     }
 }
+
+
+
+function updateTextMenu(colorInput, textArea, fontFamilySelect, sizeRange, textareaInside) {
+    textArea.value = textareaInside.innerHTML
+
+    let colorTextNow = textareaInside.style.color
+
+    function getRGBValues(rgbString) {
+        let rgbValues = rgbString.replace(/[^\d,]/g, '').split(',');
+        let [r, g, b] = rgbValues;
+        return { r, g, b };
+    }
+
+    let { r, g, b } = getRGBValues(colorTextNow);
+
+    r = Number(r);
+    g = Number(g);
+    b = Number(b);
+
+    function rgbToHex(r1, g1, b1) {
+        return "#" + ((1 << 24) + (r1 << 16) + (g1 << 8) + b1).toString(16).slice(1).toUpperCase();
+    }
+
+    colorInput.value = rgbToHex(r, g, b)
+
+    console.log(fontFamilySelect);
+
+
+    console.log(textareaInside.style.fontFamily);
+
+
+    fontFamilySelect.value = textareaInside.style.fontFamily
+
+    fontFamilySelect.style.fontFamily = textareaInside.style.fontFamily
+
+}
+
+

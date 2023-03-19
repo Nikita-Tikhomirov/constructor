@@ -251,35 +251,38 @@
               Выбирите цвет.
             </div>
           </div>
-          <input id="foo" data-jscolor="{value:'rgba(192,160,255,0.5)'}" , onInput="update(this.jscolor)">
-          <input id="input-text" type="text" placeholder="Ваш текст">
+          <!-- <input id="foo" data-jscolor="{value:'rgba(192,160,255,0.5)'}" , onInput="update(this.jscolor)"> -->
+          <input type="color" name="head" id="foo" value="#FE4536">
+          <!-- <input id="input-text" class="input-text" type="text" placeholder="Ваш текст"> -->
+          <textarea name="printText" id="input-text" cols="30" rows="4" id="input-text" class="input-text" placeholder="Ваш текст"></textarea>
 
           <!-- <em id="pr2" style="display:block; width:100%; height:100px">Ваш цвет</em> -->
 
-          <div id="output-text">
+          <div class="output-text">
             Выбирите шрифт
           </div>
 
-          <select id="input-style" class="input">
-            <option value=" Times New Roman" selected="selected">
-            Times New Roman
+          <select id="input-style" class="input input-font-family"  style='font-family: "Times New Roman";'>
+            <option value="Times New Roman" selected="selected">Times New Roman
             </option>
-            <option value="Arial">Arial</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="cursive">cursive</option>
+            <option value="Arial" style="font-family: Arial;">Arial</option>
+            <option value="fantasy" style="font-family: Fantasy;">Fantasy</option>
+            <option value="cursive" style="font-family: cursive;">cursive</option>
           </select>
-          <div id="output-text">
-            Выбирите Размер шрифта
-          </div>
 
-          <select id="input-font" class="input">
+          <div class="output-text">
+            Размер текста
+          </div>
+          <input type="range" id="input-font" name="cowbell" 
+          min="8" max="100" value="20" step="2">
+          <!-- <select id="input-font" class="input">
             <option value="14px" selected="selected">
               14px
             </option>
             <option value="14px">14px</option>
             <option value="18px">18px</option>
             <option value="22px">22px</option>
-          </select>
+          </select> -->
 
           <div class="side-picker-wrap">
             <div class="side-pick-btn fsb active">Грудь</div>
@@ -328,7 +331,7 @@
     </div>
   </section>
   <!-- <script src="js/propeller.min.js"></script> -->
-  <script src="js/jscolor.js"></script>
+  <!-- <script src="js/jscolor.js"></script> -->
   <script src="js/colorpicker.js"></script>
 
   <script src="js/variaablesToStart.js"></script>
@@ -350,7 +353,12 @@
 
 
   <script src="js/textRedactor.js"></script>
+  <script src="js/select.js"></script>
 
+  <!-- <script src="js/selectFix.js"></script> -->
+<script>
+  
+</script>
 
 </body>
 
