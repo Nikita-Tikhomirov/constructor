@@ -31,10 +31,15 @@ textStyle.addEventListener('change', () => {
 })
 
 textInput.addEventListener('input', () => {
-  const wrapId = document.querySelector('.image-controls.active').getAttribute('data-count');
+  const frame = document.querySelector('.image-controls.active');
+  const element = document.querySelector('.image-controls.active');
+  const wrapId = element.getAttribute('data-count');
   const wrap = document.querySelector(`#${wrapId}`);
   const textWrapNow = wrap.querySelector('.text-area');
   textWrapNow.textContent = textInput.value;
+
+  frame.style.width = textWrapNow.getBoundingClientRect().width + 'px';
+  frame.style.height = textWrapNow.getBoundingClientRect().height + 'px';
 })
 
 colorPickerInput.addEventListener('input', () => {

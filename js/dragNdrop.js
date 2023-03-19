@@ -86,8 +86,6 @@ function dragNdropFormat(formatFrameActive) {
     }
 }
 
-
-
 function updateTextMenu(colorInput, textArea, fontFamilySelect, sizeRange, textareaInside) {
     textArea.value = textareaInside.innerHTML
 
@@ -111,16 +109,9 @@ function updateTextMenu(colorInput, textArea, fontFamilySelect, sizeRange, texta
 
     colorInput.value = rgbToHex(r, g, b)
 
-    console.log(fontFamilySelect);
-
-
-    console.log(textareaInside.style.fontFamily);
-
-
-    fontFamilySelect.value = textareaInside.style.fontFamily
+    fontFamilySelect.value = textareaInside.style.fontFamily.replace(new RegExp('"','g'),"")
 
     fontFamilySelect.style.fontFamily = textareaInside.style.fontFamily
-
 }
 
 
