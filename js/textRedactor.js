@@ -16,38 +16,41 @@ const textInput = document.querySelector('#input-text');
 const textFont = document.querySelector('#input-font');
 const textStyle = document.querySelector('#input-style');
 
-textFont.addEventListener('input', () => {
-  const wrapId = document.querySelector('.image-controls.active').getAttribute('data-count');
-  const wrap = document.querySelector(`#${wrapId}`);
-  const textWrapNow = wrap.querySelector('.text-area');
-  textWrapNow.style.fontSize = textFont.value + 'px';
+colorPickerInput.addEventListener('input', () => {
+  const colorPickerInputValue = colorPickerInput.value;
+  const textWrapNow = getTextAreaVars()
+  textWrapNow.style.color = colorPickerInputValue;
 })
 
 textStyle.addEventListener('change', () => {
-  const wrapId = document.querySelector('.image-controls.active').getAttribute('data-count');
-  const wrap = document.querySelector(`#${wrapId}`);
-  const textWrapNow = wrap.querySelector('.text-area');
+  const textWrapNow = getTextAreaVars()
   textWrapNow.style.fontFamily = textStyle.value;
 })
 
 textInput.addEventListener('input', () => {
-  const frame = document.querySelector('.image-controls.active');
-  const element = document.querySelector('.image-controls.active');
-  const wrapId = element.getAttribute('data-count');
-  const wrap = document.querySelector(`#${wrapId}`);
-  const textWrapNow = wrap.querySelector('.text-area');
+  const textWrapNow = getTextAreaVars()
   textWrapNow.textContent = textInput.value;
+  resizeControlFrame(textWrapNow)
 
-  frame.style.width = textWrapNow.getBoundingClientRect().width + 'px';
-  frame.style.height = textWrapNow.getBoundingClientRect().height + 'px';
 })
 
-colorPickerInput.addEventListener('input', () => {
-  const colorPickerInputValue = colorPickerInput.value;
+textFont.addEventListener('input', () => {
+  const textWrapNow = getTextAreaVars()
+  textWrapNow.style.fontSize = textFont.value + 'px';
+  resizeControlFrame(textWrapNow)
+})
+
+function getTextAreaVars(){
   const wrapId = document.querySelector('.image-controls.active').getAttribute('data-count');
   const wrap = document.querySelector(`#${wrapId}`);
   const textWrapNow = wrap.querySelector('.text-area');
-  textWrapNow.style.color = colorPickerInputValue;
-})
+  return textWrapNow
+}
 
 
+function resizeControlFrame(textWrapNow){
+  const frame = document.querySelector('.image-controls.active');
+  frame.style.width = textWrapNow.getBoundingClientRect().width + 'px';
+  frame.style.height = textWrapNow.getBoundingClientRect().height + 'px';
+
+}
