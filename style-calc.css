@@ -679,6 +679,10 @@ opacity: 0;
   font-size: 18px;
 }
 
+.input-circle{
+  width: 100%;
+}
+
 
 /* @media screen and (max-width: 992px) {
 

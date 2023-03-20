@@ -13,8 +13,9 @@ addTextBtn.addEventListener('click', () => {
 
 const colorPickerInput = document.querySelector('#foo');
 const textInput = document.querySelector('#input-text');
-const textFont = document.querySelector('#input-font');
 const textStyle = document.querySelector('#input-style');
+const textFont = document.querySelector('#input-font');
+const textCircleInput = document.querySelector('.input-circle');
 
 colorPickerInput.addEventListener('input', () => {
   const colorPickerInputValue = colorPickerInput.value;
@@ -40,7 +41,7 @@ textFont.addEventListener('input', () => {
   resizeControlFrame(textWrapNow)
 })
 
-function getTextAreaVars(){
+function getTextAreaVars() {
   const wrapId = document.querySelector('.image-controls.active').getAttribute('data-count');
   const wrap = document.querySelector(`#${wrapId}`);
   const textWrapNow = wrap.querySelector('.text-area');
@@ -48,9 +49,17 @@ function getTextAreaVars(){
 }
 
 
-function resizeControlFrame(textWrapNow){
+function resizeControlFrame(textWrapNow) {
   const frame = document.querySelector('.image-controls.active');
   frame.style.width = textWrapNow.getBoundingClientRect().width + 'px';
   frame.style.height = textWrapNow.getBoundingClientRect().height + 'px';
 
 }
+
+textCircleInput.addEventListener('input', () => {
+  const textWrapNow = getTextAreaVars()
+  new CircleType(textWrapNow).radius(textCircleInput.value);
+
+  resizeControlFrame(textWrapNow)
+
+})
