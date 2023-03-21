@@ -20,7 +20,9 @@ const textCircleInput = document.querySelector('.input-circle');
 colorPickerInput.addEventListener('input', () => {
   const colorPickerInputValue = colorPickerInput.value;
   const textWrapNow = getTextAreaVars()
-  textWrapNow.style.color = colorPickerInputValue;
+  if (textWrapNow) {
+    textWrapNow.style.color = colorPickerInputValue;
+  }
 })
 
 textStyle.addEventListener('change', () => {

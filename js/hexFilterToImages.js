@@ -302,17 +302,10 @@ function hexToFilter(hexColor) {
 }
 
 colorPickerInput.addEventListener('input',()=>{
-    // console.log(colorPickerInput.value);
     const wrapId = document.querySelector('.image-controls.active').getAttribute('data-count');
     const wrap = document.querySelector(`#${wrapId}`);
     const imageNow = wrap.querySelector('img')
-    console.log(imageNow);
     const color123 = colorPickerInput.value;
     const filter = hexToFilter(color123);
-    console.log(filter['filter']);
-    imageNow.style = String(filter[filter])
-
+    imageNow.style.filter = filter['filter'].slice(7, filter['filter'].length - 1)
 })
-
-
-//   console.log(filter);
