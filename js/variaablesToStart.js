@@ -16,3 +16,7 @@ const braedCrumbsColor = document.querySelector('.category-color-now')
 const braedCrumbsSize = document.querySelector('.category-size-now')
 
 const allButtonsClosePopups = document.querySelectorAll('.closePopupBtn')
+
+const sizePickerBtn = document.querySelector('.prod-size')
+const sizePopup = document.querySelector('.sizes-popup')
+

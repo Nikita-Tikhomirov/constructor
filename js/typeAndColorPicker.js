@@ -23,9 +23,7 @@ function typePicker() {
       let bgBuckideNow = item.querySelector('.typedBs').innerText
       document.querySelector('.fs').style = bgFrontSideNow
       document.querySelector('.bs').style = bgBuckideNow
-      // thisIsTshirtNow()
       addToBreadcrumbs(braedCrumbsType,chosenType)
-      // braedCrumbsType.innerHTML = chosenType
       braedCrumbsColor.innerHTML = 'Черный' 
 
     })
@@ -56,7 +54,6 @@ function colorPicker() {
       let bgBuckideNow = item.querySelector('.coloredBs').innerText
       document.querySelector('.fs').style = bgFrontSideNow
       document.querySelector('.bs').style = bgBuckideNow
-
       let colorNow = item.querySelector('.product-color-popup__title').innerHTML
       addToBreadcrumbs(braedCrumbsColor,colorNow)
 
@@ -70,3 +67,31 @@ typePicker()
 function addToBreadcrumbs(crumb,value){
   crumb.innerHTML = value
 }
+
+
+
+function sizePickerPopup() {
+  sizePickerBtn.addEventListener('click', () => {
+      sizePopup.classList.add('active')
+  })
+}
+
+sizePickerPopup()
+
+function sizePicker(){
+  const allSizesRows = document.querySelectorAll('.size-table-row')
+  allSizesRows.forEach(element => {
+    element.addEventListener('click',()=>{
+      allSizesRows.forEach(el => {
+        el.classList.remove('active')
+      });
+      element.classList.add('active')
+      const itemChildText = element.firstElementChild.innerHTML
+      braedCrumbsSize.innerHTML = itemChildText
+      closeAllPopups()
+    })
+  });
+}
+sizePicker()
+
+
