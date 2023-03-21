@@ -319,6 +319,7 @@
 
 #input-font {
   width: 100%;
+  accent-color: #F55050;
 }
 
 .colorpicker-wrap__title {
@@ -672,6 +673,7 @@ opacity: 0;
 }
 .input-text{
   max-width: 100%;
+  accent-color: #F55050;
 }
 .input-font-family{
   width: 100%;
@@ -681,8 +683,26 @@ opacity: 0;
 
 .input-circle{
   width: 100%;
+  accent-color: #F55050;
 }
 
+.popups{
+  padding-top: 50px;
+  /* padding-right: 40px; */
+}
+.closePopupBtn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  color: #fff;
+  background-color: #fe4536;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
 
 /* @media screen and (max-width: 992px) {
 

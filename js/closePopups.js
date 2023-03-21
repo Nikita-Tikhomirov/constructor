@@ -3,3 +3,10 @@ function closeAllPopups() {
     item.classList.remove('active')
   })
 }
+
+
+allButtonsClosePopups.forEach(element => {
+  element.addEventListener('click',()=>{
+    closeAllPopups()
+  })
+});

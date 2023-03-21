@@ -25,6 +25,9 @@ function typePicker() {
       document.querySelector('.bs').style = bgBuckideNow
       // thisIsTshirtNow()
       addToBreadcrumbs(braedCrumbsType,chosenType)
+      // braedCrumbsType.innerHTML = chosenType
+      braedCrumbsColor.innerHTML = 'Черный' 
+
     })
   })
 }

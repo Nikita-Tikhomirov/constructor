@@ -56,10 +56,12 @@ function resizeControlFrame(textWrapNow) {
 
 }
 
-textCircleInput.addEventListener('input', () => {
-  const textWrapNow = getTextAreaVars()
-  new CircleType(textWrapNow).radius(textCircleInput.value);
+// textCircleInput.addEventListener('input', () => {
+//   const textWrapNow = getTextAreaVars()
+//   new CircleType(textWrapNow).radius(textCircleInput.value);
 
-  resizeControlFrame(textWrapNow)
+//   resizeControlFrame(textWrapNow)
 
-})
+// })
+
+
