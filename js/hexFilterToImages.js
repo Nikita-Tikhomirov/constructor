@@ -1,26 +1,3 @@
-// function hexToFilter(hex) {
-//     let r = parseInt(hex.slice(1, 3), 16);
-//     let g = parseInt(hex.slice(3, 5), 16);
-//     let b = parseInt(hex.slice(5, 7), 16);
-  
-//     let invert = `invert(${((255 - r) / 255) * 100}%)`;
-//     let sepia = `sepia(${(r / 255) * 100}%)`;
-//     let saturate = `saturate(${(g / 255) * 100 + 100}%)`;
-//     let hueRotate = `hue-rotate(${(b / 255) * 360}deg)`;
-//     let brightness = `brightness(${(r * 0.299 + g * 0.587 + b * 0.114) / 255}%)`;
-//     let contrast = `contrast(${(r + g + b) / 3 / 255 * 100}%)`;
-//     let grayscale = `grayscale(${(r + g + b) / 3 / 255 * 100}%)`;
-  
-//     return `${invert} ${sepia} ${saturate} ${hueRotate} ${brightness} ${contrast} ${grayscale}`;
-//   }
-  
-//   const color = "#84B77C";
-//   const filter = hexToFilter(color);
-//   console.log(filter);
-  
-
-
-'use strict';
 
 class Color {
   constructor(r, g, b) {
@@ -324,8 +301,18 @@ function hexToFilter(hexColor) {
   return result
 }
 
-  
+colorPickerInput.addEventListener('input',()=>{
+    // console.log(colorPickerInput.value);
+    const wrapId = document.querySelector('.image-controls.active').getAttribute('data-count');
+    const wrap = document.querySelector(`#${wrapId}`);
+    const imageNow = wrap.querySelector('img')
+    console.log(imageNow);
+    const color123 = colorPickerInput.value;
+    const filter = hexToFilter(color123);
+    console.log(filter['filter']);
+    imageNow.style = String(filter[filter])
 
-  const color123 = "#84B77C";
-  const filter = hexToFilter(color123);
-  console.log(filter);
+})
+
+
+//   console.log(filter);

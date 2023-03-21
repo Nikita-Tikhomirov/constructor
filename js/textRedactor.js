@@ -63,5 +63,3 @@ function resizeControlFrame(textWrapNow) {
 //   resizeControlFrame(textWrapNow)
 
 // })
-
-
