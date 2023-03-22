@@ -11,7 +11,34 @@ function createNewFrame(img) {
   newFrame.classList.add('generated-img-wrap', formatNow);
   newFrame.id = `count_${count}`
 
-  newFrame.appendChild(img)
+  const svgWrapToImage = document.createElement('svg')
+  // svgWrapToImage.setAttribute('viewBox', '0 0 100 100')
+  const svgFilter = document.createElement('filter')
+  svgFilter.setAttribute('color-interpolation-filters', 'sRGB')
+  svgFilter.setAttribute('id', 'colorTransformFilter')
+  svgWrapToImage.appendChild(svgFilter)
+
+  const filterColormatrix = document.createElement('feColorMatrix')
+  filterColormatrix.setAttribute('in', 'SourceGraphic')
+  filterColormatrix.setAttribute('type', 'matrix')
+  filterColormatrix.setAttribute(
+    'values',
+    `1 0 0 0 0 
+  0 1 0 0 0
+  0 0 1 0 0
+  0 0 0 1 0`)
+  svgFilter.appendChild(filterColormatrix)
+  // img to image converter
+  const imageTosvg = document.createElement('image')
+  const imagePath = img.src
+
+
+  imageTosvg.setAttribute('xlink:href', imagePath)
+  imageTosvg.setAttribute('filter', 'colorTransformFilter')
+
+
+  svgWrapToImage.appendChild(imageTosvg)
+  newFrame.appendChild(svgWrapToImage)
   container.appendChild(newFrame)
 
   const imageControls = document.createElement('div');
@@ -27,7 +54,7 @@ function createNewFrame(img) {
 
   imageControls.classList.add('image-controls', 'active', formatNow);
   imageControls.setAttribute('data-count', `count_${count}`)
-  
+
   imageRemove.classList.add('image-remove');
   imageRotate.classList.add('image-rotate');
   imageScale.classList.add('image-scale');
@@ -47,7 +74,7 @@ function createNewFrame(img) {
   setTimeout(() => {
     imageControls.style.width = newFrame.offsetWidth + 'px';
     imageControls.style.height = newFrame.offsetHeight + 'px';
-  },100)
+  }, 100)
 
   imageControls.addEventListener('mousedown', () => {
     const imagesInside = container.querySelector('.generated-img-wrap.active');
@@ -58,7 +85,7 @@ function createNewFrame(img) {
   dragNdropFormat(imageControls);
   controlScaleFunction(newFrame, imageControls, imageScale, imageScaleWidth, imageScaleHeight);
 
-  imageRotate.addEventListener("ondragstart", () => {return false});
+  imageRotate.addEventListener("ondragstart", () => { return false });
   imageRotate.addEventListener("mousedown", () => {
     rotate(imageControls, imageRotate)
   });
