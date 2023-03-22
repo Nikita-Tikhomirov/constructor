@@ -10,61 +10,67 @@ function createNewFrame(img) {
   const newFrame = document.createElement('div');
   newFrame.classList.add('generated-img-wrap', formatNow);
   newFrame.id = `count_${count}`
+  if (img.classList.contains('text-area')) {
+    newFrame.appendChild(img)
+    container.appendChild(newFrame)
+    console.log(1);
 
-  const svgWrapToImage = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  } else {
 
-  var boxWidth = img.width / 2;
-  var boxHeight = img.height / 2;
-  svgWrapToImage.setAttributeNS(null, "viewBox", "0 0 " + boxWidth + " " + boxHeight);
-  svgWrapToImage.setAttributeNS(null, "width", '100%');
-  svgWrapToImage.setAttributeNS(null, "height", '100%');
-  svgWrapToImage.style.display = "block";
+    const svgWrapToImage = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
-
-
-  const svgFilter = document.createElementNS(
-    'http://www.w3.org/2000/svg',
-    'filter'
-  );
-
-
-  svgFilter.setAttributeNS(null, "color-interpolation-filters", "sRGB");
-  svgFilter.setAttributeNS(null, "id", "colorTransformFilter");
-
-  svgWrapToImage.appendChild(svgFilter)
-
-  const filterColormatrix = document.createElementNS(
-    'http://www.w3.org/2000/svg',
-    'feColorMatrix'
-  );
+    var boxWidth = img.width / 2;
+    var boxHeight = img.height / 2;
+    svgWrapToImage.setAttributeNS(null, "viewBox", "0 0 " + boxWidth + " " + boxHeight);
+    svgWrapToImage.setAttributeNS(null, "width", '100%');
+    svgWrapToImage.setAttributeNS(null, "height", '100%');
+    svgWrapToImage.style.display = "block";
 
 
 
-  filterColormatrix.setAttributeNS(null, "in", "SourceGraphic");
-  filterColormatrix.setAttributeNS(null, "type", "matrix");
-  filterColormatrix.setAttributeNS(null, "values", `1 0 0 0 0 
+    const svgFilter = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'filter'
+    );
+
+
+    svgFilter.setAttributeNS(null, "color-interpolation-filters", "sRGB");
+    svgFilter.setAttributeNS(null, "id", "colorTransformFilter");
+
+    svgWrapToImage.appendChild(svgFilter)
+
+    const filterColormatrix = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'feColorMatrix'
+    );
+
+    filterColormatrix.setAttributeNS(null, "in", "SourceGraphic");
+    filterColormatrix.setAttributeNS(null, "type", "matrix");
+    filterColormatrix.setAttributeNS(null, "values", `1 0 0 0 0 
   0 1 0 0 0
   0 0 1 0 0
   0 0 0 1 0`);
 
-  svgFilter.appendChild(filterColormatrix)
- 
-  const imageTosvg = document.createElementNS(
-    'http://www.w3.org/2000/svg',
-    'image'
-  );
-  imageSrc = img.src
-  imageTosvg.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", imageSrc);
-  imageTosvg.setAttributeNS(null, "width", boxWidth);
-  imageTosvg.setAttributeNS(null, "height", boxHeight);
-  imageTosvg.setAttributeNS(null, "filter", 'url(#colorTransformFilter)');
+    svgFilter.appendChild(filterColormatrix)
+
+    const imageTosvg = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'image'
+    );
+    imageSrc = img.src
+    imageTosvg.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", imageSrc);
+    imageTosvg.setAttributeNS(null, "width", boxWidth);
+    imageTosvg.setAttributeNS(null, "height", boxHeight);
+    imageTosvg.setAttributeNS(null, "filter", 'url(#colorTransformFilter)');
 
 
-  svgWrapToImage.appendChild(imageTosvg)
+    svgWrapToImage.appendChild(imageTosvg)
 
 
-  newFrame.appendChild(svgWrapToImage)
-  container.appendChild(newFrame)
+    newFrame.appendChild(svgWrapToImage)
+    container.appendChild(newFrame)
+    console.log(2);
+  }
 
   const imageControls = document.createElement('div');
 

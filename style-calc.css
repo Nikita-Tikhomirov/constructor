@@ -85,12 +85,6 @@
   user-select: none;
   pointer-events: none;
 }
-.generated-img-wrap image {
-  /* width: 100%;
-  height: 100%; */
-  user-select: none;
-  pointer-events: none;
-}
 
 .zoomButton {
   background-color: #fe4536;
