@@ -8,7 +8,10 @@ function createNewFrame(img) {
   if (activeFrameWrap) activeFrameWrap.classList.remove('active');
 
   const newFrame = document.createElement('div');
-  newFrame.classList.add('generated-img-wrap', formatNow);
+  newFrame.classList.add('generated-img-wrap', formatNow, 'active');
+  
+
+  
   newFrame.id = `count_${count}`
   if (img.classList.contains('text-area')) {
     newFrame.appendChild(img)
@@ -35,7 +38,7 @@ function createNewFrame(img) {
 
 
     svgFilter.setAttributeNS(null, "color-interpolation-filters", "sRGB");
-    svgFilter.setAttributeNS(null, "id", "colorTransformFilter");
+    svgFilter.setAttributeNS(null, "id", `filter_count_${count}`);
 
     svgWrapToImage.appendChild(svgFilter)
 
@@ -61,7 +64,7 @@ function createNewFrame(img) {
     imageTosvg.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", imageSrc);
     imageTosvg.setAttributeNS(null, "width", boxWidth);
     imageTosvg.setAttributeNS(null, "height", boxHeight);
-    imageTosvg.setAttributeNS(null, "filter", 'url(#colorTransformFilter)');
+    imageTosvg.setAttributeNS(null, "filter", `url(#filter_count_${count})`);
 
 
     svgWrapToImage.appendChild(imageTosvg)
@@ -69,8 +72,10 @@ function createNewFrame(img) {
 
     newFrame.appendChild(svgWrapToImage)
     container.appendChild(newFrame)
+
     console.log(2);
   }
+
 
   const imageControls = document.createElement('div');
 

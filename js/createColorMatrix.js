@@ -2,13 +2,19 @@
 const colorPickerToSvg = document.querySelector('#foo')
 colorPickerToSvg.addEventListener('input', () => {
     
+    const activeImgWrap = document.querySelector('.generated-img-wrap.active')
+    const activeImgWrapId = activeImgWrap.id
+    let clearId = activeImgWrapId.replace(/\D/g, '');
+    
+
+
     const setPrimaryColor = function (_r, _g, _b) {
 
         const rScaled = _r / 255.0;
         const gScaled = _g / 255.0;
         const bScaled = _b / 255.0;
     
-        const feColorMatrixElem = document.getElementById('colorTransformFilter').getElementsByTagName('feColorMatrix')[0];
+        const feColorMatrixElem = document.getElementById(`filter_count_${clearId}`).getElementsByTagName('feColorMatrix')[0];
         feColorMatrixElem.setAttribute(
             `values`,
             `0 0 0 0 ${rScaled}
