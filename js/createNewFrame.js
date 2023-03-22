@@ -11,33 +11,58 @@ function createNewFrame(img) {
   newFrame.classList.add('generated-img-wrap', formatNow);
   newFrame.id = `count_${count}`
 
-  const svgWrapToImage = document.createElement('svg')
-  // svgWrapToImage.setAttribute('viewBox', '0 0 100 100')
-  const svgFilter = document.createElement('filter')
-  svgFilter.setAttribute('color-interpolation-filters', 'sRGB')
-  svgFilter.setAttribute('id', 'colorTransformFilter')
+  const svgWrapToImage = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+
+  var boxWidth = img.width / 2;
+  var boxHeight = img.height / 2;
+  svgWrapToImage.setAttributeNS(null, "viewBox", "0 0 " + boxWidth + " " + boxHeight);
+  svgWrapToImage.setAttributeNS(null, "width", '100%');
+  svgWrapToImage.setAttributeNS(null, "height", '100%');
+  svgWrapToImage.style.display = "block";
+
+
+
+  const svgFilter = document.createElementNS(
+    'http://www.w3.org/2000/svg',
+    'filter'
+  );
+
+
+  svgFilter.setAttributeNS(null, "color-interpolation-filters", "sRGB");
+  svgFilter.setAttributeNS(null, "id", "colorTransformFilter");
+
   svgWrapToImage.appendChild(svgFilter)
 
-  const filterColormatrix = document.createElement('feColorMatrix')
-  filterColormatrix.setAttribute('in', 'SourceGraphic')
-  filterColormatrix.setAttribute('type', 'matrix')
-  filterColormatrix.setAttribute(
-    'values',
-    `1 0 0 0 0 
+  const filterColormatrix = document.createElementNS(
+    'http://www.w3.org/2000/svg',
+    'feColorMatrix'
+  );
+
+
+
+  filterColormatrix.setAttributeNS(null, "in", "SourceGraphic");
+  filterColormatrix.setAttributeNS(null, "type", "matrix");
+  filterColormatrix.setAttributeNS(null, "values", `1 0 0 0 0 
   0 1 0 0 0
   0 0 1 0 0
-  0 0 0 1 0`)
+  0 0 0 1 0`);
+
   svgFilter.appendChild(filterColormatrix)
-  // img to image converter
-  const imageTosvg = document.createElement('image')
-  const imagePath = img.src
-
-
-  imageTosvg.setAttribute('xlink:href', imagePath)
-  imageTosvg.setAttribute('filter', 'colorTransformFilter')
+ 
+  const imageTosvg = document.createElementNS(
+    'http://www.w3.org/2000/svg',
+    'image'
+  );
+  imageSrc = img.src
+  imageTosvg.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", imageSrc);
+  imageTosvg.setAttributeNS(null, "width", boxWidth);
+  imageTosvg.setAttributeNS(null, "height", boxHeight);
+  imageTosvg.setAttributeNS(null, "filter", 'url(#colorTransformFilter)');
 
 
   svgWrapToImage.appendChild(imageTosvg)
+
+
   newFrame.appendChild(svgWrapToImage)
   container.appendChild(newFrame)
 
