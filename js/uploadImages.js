@@ -7,8 +7,8 @@ const fileInput = document.querySelector('#file-input');
 
 const addImage = (file) => {
   const reader = new FileReader();
-  
-  
+
+
   reader.addEventListener('load', () => {
     // const imgWrap = document.createElement('div');
     // imgWrap.classList.add('generated-img-wrap');
@@ -24,10 +24,10 @@ const addImage = (file) => {
 
     // createControlsForImage();
     createNewFrame(image)
-  controlScaleFunction();
+    controlScaleFunction();
 
     dragNdropCustom();
-    
+
   });
   reader.readAsDataURL(file);
 
@@ -78,7 +78,7 @@ fileInput.addEventListener('change', (event) => {
 //   imageScale.classList.add('image-scale');
 
 //   imageControls.appendChild(imageRemove);
-//   // Удаление рамки и блока 
+//   // Удаление рамки и блока
 //   deletePrint(imageRemove, generatedImgWrap)
 //   imageControls.appendChild(imageRotate);
 //   imageControls.appendChild(imageScale);
