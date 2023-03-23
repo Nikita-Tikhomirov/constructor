@@ -20,25 +20,28 @@
             <li class="constructor__menu-item product-type">
               Изделие
             </li>
+            <!-- <li class="constructor__menu-item">Возраст</li> -->
             <li class="constructor__menu-item product-color">Цвет</li>
-            <li class="constructor__menu-item">Размер</li>
+            <li class="constructor__menu-item prod-size">Размер</li>
             <li class="constructor__menu-item product-format product-format-fs active">
-                <span class="submenu-title">Формат</span>
+              <span class="submenu-title">Формат</span>
               <ul class="constructor__menu-item-submenu ">
-               <li frameformat="a3" class="">A3</li>
+                <li frameformat="a3" class="">A3</li>
                 <li frameformat="a4v">A4</li>
                 <li frameformat="a5v">A5</li>
+
               </ul>
             </li>
 
             <li class="constructor__menu-item product-format product-format-bs">
               <span class="submenu-title">Формат</span>
-            <ul class="constructor__menu-item-submenu ">
-               <li frameformat="a3" class="">A3</li>
+              <ul class="constructor__menu-item-submenu ">
+                <li frameformat="a3" class="">A3</li>
                 <li frameformat="a4v">A4</li>
                 <li frameformat="a5v">A5</li>
-            </ul>
-          </li>
+
+              </ul>
+            </li>
 
           </ul>
           <div class="constructor__menu-title">Добавьте</div>
@@ -56,12 +59,11 @@
               <li>Выбрано:</li>
               <li class="category-type-now">Футболки</li>
               <li class="category-color-now">Черный</li>
-              <li class="category-size-now">XL</li>
-
+              <li class="category-size-now">XS</li>
             </ul>
           </div>
 
-          <div class="constructor__product-container bg-center-custom fs active" style="background: url([[*tshirtFs]])">
+          <div class="constructor__product-container bg-center-custom fs active" style="background: url([[*tshirtBs]])">
 
 
           </div>
@@ -73,6 +75,7 @@
           <div class="constructor__menu-popups-warp">
             <!-- выбор типа изделия -->
             <div class="product-type-popup popups">
+              <div class="closePopupBtn">x</div>
               <!-- карточка с типом изделия -->
               <div class="product-type-popup__card">
                 <div class="product-type-popup__img-wrap">
@@ -111,18 +114,18 @@
             </div>
             <!-- Выбор цвета -->
             <div class="product-color-popup product-color-popup__tshirts popups">
-                [[!getImageList?
+              <!-- карточка с цветом изделия -->
+              <div class="closePopupBtn">x</div>
+                    [[!getImageList?
                 &tvname=`migx_tshirtsColors`
                 &tpl=`migx_tshirtsColors_tpl`
                 &limit=`999`
               ]]
-
-
-
             </div>
 
 
             <div class="product-color-popup product-color-popup__hoodys popups">
+                <div class="closePopupBtn">x</div>
               <!-- карточка с цветом изделия -->
               [[!getImageList?
               &tvname=`migx_hoodyColors`
@@ -130,20 +133,19 @@
               &limit=`999`
             ]]
 
-
-
             </div>
             <div class="product-color-popup product-color-popup__sweetshots popups">
+                <div class="closePopupBtn">x</div>
               <!-- карточка с цветом изделия -->
               [[!getImageList?
               &tvname=`migx_sweetshotsColors`
               &tpl=`migx_tshirtsColors_tpl`
               &limit=`999`
-            ]]
-
+              ]]
             </div>
             <!--Загруженные изображения и drug and drop-->
             <div class="product-upload-img-popup popups">
+              <div class="closePopupBtn">x</div>
               <div class="product-upload-img-popup__sidebar">
                 <div class="upload-container">
                   <div class="upload-text">Перетащите или загрузите</div>
@@ -153,18 +155,72 @@
               </div>
 
               <div class="popup-images">
-
                 [[!getImageList?
                 &tvname=`migx_pickPrint`
                 &tpl=`migx_pickPrint_tpl`
               ]]
 
-
-
-
               </div>
             </div>
-
+            <div class="sizes-popup popups">
+              <div class="closePopupBtn">x</div>
+              <table class="size-table">
+                <tr>
+                  <th>Euro</th>
+                  <th>Размер</th>
+                  <th>Ширина см</th>
+                  <th>Длина см</th>
+                </tr>
+                <tr class="size-table-row active">
+                  <td>XS</td>
+                  <td>44</td>
+                  <td>48</td>
+                  <td>68</td>
+                </tr>
+                <tr class="size-table-row">
+                  <td>S</td>
+                  <td>46</td>
+                  <td>50</td>
+                  <td>70</td>
+                </tr>
+                <tr class="size-table-row">
+                  <td>M</td>
+                  <td>48</td>
+                  <td>52</td>
+                  <td>72</td>
+                </tr>
+                <tr class="size-table-row">
+                  <td>L</td>
+                  <td>50</td>
+                  <td>54</td>
+                  <td>73</td>
+                </tr>
+                <tr class="size-table-row">
+                  <td>XL</td>
+                  <td>52</td>
+                  <td>56</td>
+                  <td>75</td>
+                </tr>
+                <tr class="size-table-row">
+                  <td>2XL</td>
+                  <td>54</td>
+                  <td>58</td>
+                  <td>77</td>
+                </tr>
+                <tr class="size-table-row">
+                  <td>3XL</td>
+                  <td>56</td>
+                  <td>60</td>
+                  <td>79</td>
+                </tr>
+                <tr class="size-table-row">
+                  <td>4XL</td>
+                  <td>58</td>
+                  <td>62</td>
+                  <td>81</td>
+                </tr>
+              </table>
+            </div>
 
           </div>
         </div>
@@ -177,37 +233,45 @@
               Выбирите цвет.
             </div>
           </div>
-          <input id="foo" data-jscolor="{value:'rgba(192,160,255,0.5)'}" , onInput="update(this.jscolor)">
-          <input id="input-text" type="text" placeholder="Ваш текст">
+          <!-- <input id="foo" data-jscolor="{value:'rgba(192,160,255,0.5)'}" , onInput="update(this.jscolor)"> -->
+          <input type="color" name="head" id="foo" value="#FE4536">
+          <!-- <input id="input-text" class="input-text" type="text" placeholder="Ваш текст"> -->
+          <textarea name="printText" id="input-text" cols="30" rows="4" id="input-text" class="input-text" placeholder="Ваш текст"></textarea>
 
-          <div id="output-text">
+          <!-- <em id="pr2" style="display:block; width:100%; height:100px">Ваш цвет</em> -->
+
+          <div class="output-text">
             Выбирите шрифт
           </div>
 
-          <div id="output-text">
-            Выбирите шрифт
-          </div>
-
-          <select id="input-font" class="input" onchange="changeFontStyle (this);">
-            <option value="Times New Roman" selected="selected">
-              Times New Roman
+          <select id="input-style" class="input input-font-family"  style='font-family: "Times New Roman";'>
+            <option value="Times New Roman" selected="selected">Times New Roman
             </option>
-            <option value="Arial">Arial</option>
-            <option value="fantasy">Fantasy</option>
-            <option value="cursive">cursive</option>
+            <option value="Arial" style="font-family: Arial;">Arial</option>
+            <option value="fantasy" style="font-family: Fantasy;">Fantasy</option>
+            <option value="cursive" style="font-family: cursive;">cursive</option>
           </select>
-          <div id="output-text">
-            Выбирите Размер шрифта
-          </div>
 
-          <select id="input-font" class="input" onchange="changeFontSize (this);">
+          <div class="output-text">
+            Размер текста
+          </div>
+          <input type="range" id="input-font" name="cowbell" 
+          min="8" max="100" value="20" step="2">
+
+          <div class="output-text">
+            Скругление текста
+          </div>
+          <input type="range" id="input-circle" name="circle" class="input-circle" 
+          min="0" max="360" value="0" step="1">
+
+          <!-- <select id="input-font" class="input">
             <option value="14px" selected="selected">
               14px
             </option>
             <option value="14px">14px</option>
             <option value="18px">18px</option>
             <option value="22px">22px</option>
-          </select>
+          </select> -->
 
           <div class="side-picker-wrap">
             <div class="side-pick-btn fsb active">Грудь</div>
@@ -257,24 +321,22 @@
   </section>
 </body>
 [[$footerCustom]]
-<script src="[[++assets_url]]/custom/js/jscolor.js"></script>
-<script src="[[++assets_url]]/custom/js/colorpicker.js"></script>
-<script src="[[++assets_url]]/custom/js/variaablesToStart.js"></script>
-<script src="[[++assets_url]]/custom/js/priceCalculator.js"></script>
-<script src="[[++assets_url]]/custom/js/openPopups.js"></script>
-<script src="[[++assets_url]]/custom/js/closePopups.js"></script>
-<script src="[[++assets_url]]/custom/js/dragNdrop.js"></script>
-<script src="[[++assets_url]]/custom/js/jsv4.js"></script>
-<script src="[[++assets_url]]/custom/js/uploadImages.js"></script>
-<script src="[[++assets_url]]/custom/js/createNewFrame.js"></script>
-<script src="[[++assets_url]]/custom/js/pickImgFromPopup.js"></script>
-<script src="[[++assets_url]]/custom/js/controlScale.js"></script>
-<script src="[[++assets_url]]/custom/js/deletePrint.js"></script>
-<script src="[[++assets_url]]/custom/js/sidePicker.js"></script>
-<script src="[[++assets_url]]/custom/js/typeAndColorPicker.js"></script>
-<script src="[[++assets_url]]/custom/js/rotate.js"></script>
-<script src="[[++assets_url]]/custom/js/textRedactor.js"></script>
-
-
+<script src="[[++assets_url]]custom/js/variaablesToStart.js"></script>
+<script src="[[++assets_url]]custom/js/priceCalculator.js"></script>
+<script src="[[++assets_url]]custom/js/openPopups.js"></script>
+<script src="[[++assets_url]]custom/js/closePopups.js"></script>
+<script src="[[++assets_url]]custom/js/dragNdrop.js"></script>
+<script src="[[++assets_url]]custom/js/jsv4.js"></script>
+<script src="[[++assets_url]]custom/js/uploadImages.js"></script>
+<script src="[[++assets_url]]custom/js/createNewFrame.js"></script>
+<script src="[[++assets_url]]custom/js/pickImgFromPopup.js"></script>
+<script src="[[++assets_url]]custom/js/controlScale.js"></script>
+<script src="[[++assets_url]]custom/js/deletePrint.js"></script>
+<script src="[[++assets_url]]custom/js/sidePicker.js"></script>
+<script src="[[++assets_url]]custom/js/typeAndColorPicker.js"></script>
+<script src="[[++assets_url]]custom/js/rotate.js"></script>
+<script src="[[++assets_url]]custom/js/textRedactor.js"></script>
+<script src="[[++assets_url]]custom/js/select.js"></script>
+<script src="[[++assets_url]]custom/js/createColorMatrix.js"></script>
 </html>  
  
