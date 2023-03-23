@@ -24,7 +24,7 @@ function createNewFrame(img) {
 
     var boxWidth = img.width / 2;
     var boxHeight = img.height / 2;
-    svgWrapToImage.setAttributeNS(null, "viewBox", "0 0 " + boxWidth + " " + boxHeight);
+    svgWrapToImage.setAttributeNS(null, "viewBox", "0 0 100 100");
     svgWrapToImage.setAttributeNS(null, "width", '100%');
     svgWrapToImage.setAttributeNS(null, "height", '100%');
     svgWrapToImage.style.display = "block";
@@ -62,8 +62,8 @@ function createNewFrame(img) {
     );
     imageSrc = img.src
     imageTosvg.setAttributeNS('http://www.w3.org/1999/xlink', "xlink:href", imageSrc);
-    imageTosvg.setAttributeNS(null, "width", boxWidth);
-    imageTosvg.setAttributeNS(null, "height", boxHeight);
+    imageTosvg.setAttributeNS(null, "width", '100%');
+    imageTosvg.setAttributeNS(null, "height", '100%');
     imageTosvg.setAttributeNS(null, "filter", `url(#filter_count_${count})`);
 
 
