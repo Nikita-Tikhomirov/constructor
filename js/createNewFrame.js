@@ -2,7 +2,7 @@ function createNewFrame(img) {
   const format = sideNow.querySelector('.formatWrap.active');
   const container = format.querySelector('.constructor__product-container-image-wrap');
   const formatInner = format.querySelector('.innerFrame__container');
-  const count = sideNow.querySelectorAll('.generated-img-wrap').length;
+  const count = document.querySelectorAll('.generated-img-wrap').length;
 
   const activeFrameWrap = document.querySelector('.image-controls.active');
   if (activeFrameWrap) activeFrameWrap.classList.remove('active');
@@ -13,6 +13,7 @@ function createNewFrame(img) {
 
   
   newFrame.id = `count_${count}`
+  console.log(newFrame.id);
   if (img.classList.contains('text-area')) {
     newFrame.appendChild(img)
     container.appendChild(newFrame)
