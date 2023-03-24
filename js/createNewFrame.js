@@ -5,12 +5,13 @@ function createNewFrame(img) {
   const count = document.querySelectorAll('.generated-img-wrap').length;
 
   const activeFrameWrap = document.querySelector('.image-controls.active');
+  const activeImgWrap = document.querySelector('.generated-img-wrap.active');
+
   if (activeFrameWrap) activeFrameWrap.classList.remove('active');
+  if (activeImgWrap)  activeImgWrap.classList.remove('active');;
 
   const newFrame = document.createElement('div');
   newFrame.classList.add('generated-img-wrap', formatNow, 'active');
-  
-
   
   newFrame.id = `count_${count}`
   console.log(newFrame.id);
@@ -29,16 +30,12 @@ function createNewFrame(img) {
     svgWrapToImage.setAttributeNS(null, "width", '100%');
     svgWrapToImage.setAttributeNS(null, "height", '100%');
     svgWrapToImage.setAttributeNS(null, "preserveAspectRatio", 'none');
-
     svgWrapToImage.style.display = "block";
-
-
 
     const svgFilter = document.createElementNS(
       'http://www.w3.org/2000/svg',
       'filter'
     );
-
 
     svgFilter.setAttributeNS(null, "color-interpolation-filters", "sRGB");
     svgFilter.setAttributeNS(null, "id", `filter_count_${count}`);
@@ -69,10 +66,7 @@ function createNewFrame(img) {
     imageTosvg.setAttributeNS(null, "height", '100%');
     imageTosvg.setAttributeNS(null, "filter", `url(#filter_count_${count})`);
 
-
     svgWrapToImage.appendChild(imageTosvg)
-
-
     newFrame.appendChild(svgWrapToImage)
     container.appendChild(newFrame)
 
