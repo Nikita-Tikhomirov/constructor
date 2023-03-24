@@ -27,6 +27,8 @@ function createNewFrame(img) {
     svgWrapToImage.setAttributeNS(null, "viewBox", "0 0 100 100");
     svgWrapToImage.setAttributeNS(null, "width", '100%');
     svgWrapToImage.setAttributeNS(null, "height", '100%');
+    svgWrapToImage.setAttributeNS(null, "preserveAspectRatio", 'none');
+
     svgWrapToImage.style.display = "block";
 
 
