@@ -15,7 +15,10 @@
   <section class="constructor pt-4">
     <div class="container constructor__cont ">
       <div class="row">
-        <div class="col-lg-2 constructor__menu-left">
+        <div class="col-lg-2 constructor__menu-left active">
+          <div class="constructor__menu-left__burger active">
+            <span></span><span></span><span></span>
+          </div>
           <div class="constructor__menu-title">Выберите</div>
 
           <ul class="constructor__menu-list">
@@ -309,6 +312,9 @@
 
 
         <div class="col-lg-3 constructor__menu-left">
+          <div class="constructor__menu-right__burger">
+            <span></span><span></span><span></span>
+          </div>
           <div class="colorpicker-wrap">
             <div class="colorpicker-wrap__title">
               Выбирите цвет.
@@ -317,7 +323,8 @@
           <!-- <input id="foo" data-jscolor="{value:'rgba(192,160,255,0.5)'}" , onInput="update(this.jscolor)"> -->
           <input type="color" name="head" id="foo" value="#FE4536">
           <!-- <input id="input-text" class="input-text" type="text" placeholder="Ваш текст"> -->
-          <textarea name="printText" id="input-text" cols="30" rows="4" id="input-text" class="input-text" placeholder="Ваш текст"></textarea>
+          <textarea name="printText" id="input-text" cols="30" rows="4" id="input-text" class="input-text"
+            placeholder="Ваш текст"></textarea>
 
           <!-- <em id="pr2" style="display:block; width:100%; height:100px">Ваш цвет</em> -->
 
@@ -325,7 +332,7 @@
             Выбирите шрифт
           </div>
 
-          <select id="input-style" class="input input-font-family"  style='font-family: "Times New Roman";'>
+          <select id="input-style" class="input input-font-family" style='font-family: "Times New Roman";'>
             <option value="Times New Roman" selected="selected">Times New Roman
             </option>
             <option value="Arial" style="font-family: Arial;">Arial</option>
@@ -336,8 +343,7 @@
           <div class="output-text">
             Размер текста
           </div>
-          <input type="range" id="input-font" name="cowbell" 
-          min="8" max="100" value="20" step="2">
+          <input type="range" id="input-font" name="cowbell" min="8" max="100" value="20" step="2">
 
           <div class="output-text">
             Скругление текста
@@ -350,8 +356,8 @@
             вниз
             <input type="checkbox" id="text-curves-down" class="text-curves" name="curves">
           </label>
-          <input type="range" id="input-circle" name="circle" class="input-circle" 
-          min="-50" max="50" value="0" step="1">
+          <input type="range" id="input-circle" name="circle" class="input-circle" min="-50" max="50" value="0"
+            step="1">
 
           <!-- <select id="input-font" class="input">
             <option value="14px" selected="selected">
@@ -427,6 +433,8 @@
   <script src="js/textRedactor.js"></script>
   <script src="js/select.js"></script>
   <script src="js/createColorMatrix.js"></script>
+  <script src="js/mobileScripts.js"></script>
+
 </body>
 
 </html>
