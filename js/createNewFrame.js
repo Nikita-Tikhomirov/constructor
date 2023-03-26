@@ -23,6 +23,7 @@ function createNewFrame(img) {
   } else {
 
     const svgWrapToImage = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgWrapToImage.classList.add('image-svg');
 
     var boxWidth = img.width / 2;
     var boxHeight = img.height / 2;

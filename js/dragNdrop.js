@@ -46,10 +46,6 @@ function dragNdropFormat(formatFrameActive) {
             updateTextMenu(inputColor, inputText, inputFamily, inputSize, textareaInside)
 
         }
-
-
-
-
     }
 
     function dragEnd(e) {
@@ -87,7 +83,7 @@ function dragNdropFormat(formatFrameActive) {
 }
 
 function updateTextMenu(colorInput, textArea, fontFamilySelect, sizeRange, textareaInside) {
-    textArea.value = textareaInside.innerHTML
+    textArea.value = textareaInside.textContent
 
     let colorTextNow = textareaInside.style.color
 

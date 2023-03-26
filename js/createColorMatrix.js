@@ -3,8 +3,8 @@ const colorPickerToSvg = document.querySelector('#foo')
 colorPickerToSvg.addEventListener('input', () => {
     
     const activeImgWrap = document.querySelector('.generated-img-wrap.active')
-    const svgInside = activeImgWrap.querySelector('svg')
-    if(svgInside != undefined){
+    const svgInside = activeImgWrap.querySelector('.image-svg');
+    if(svgInside){
         const activeImgWrapId = activeImgWrap.id
         let clearId = activeImgWrapId.replace(/\D/g, '');
         
