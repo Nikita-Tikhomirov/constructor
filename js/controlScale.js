@@ -43,8 +43,17 @@ function controlScaleFunction(newFrame, imageControls, imageScale, imageScaleWid
     });
 
     function scale(e) {
-      const wDiff = startX - e.clientX;
-      const hDiff = startY - e.clientY;
+      let wDiff;
+      let hDiff;
+
+      if (e.touches) {
+        wDiff = startX - e.touches[0].clientX;
+        hDiff = startY - e.touches[0].clientY;
+      } else {
+        wDiff = startX - e.clientX;
+        hDiff = startY - e.clientY;
+      }
+
       const rotatedWDiff = cosFraction * wDiff + sinFraction * hDiff;
       const rotatedHDiff = cosFraction * hDiff - sinFraction * wDiff;
 
