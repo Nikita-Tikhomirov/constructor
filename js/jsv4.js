@@ -20,10 +20,13 @@ function formatPicker() {
         // Активный формат 
         formatNow = classToCreateFormatFrame
         createFormatFrame(classToCreateFormatFrame, sideNow);
+        leftSidebarBurger.classList.remove('active')
+        leftSidebar.classList.remove('active')
       });
     });
   }
   actionAfterClickFormat();
+
 }
 
 formatPicker()

@@ -25,7 +25,8 @@ function typePicker() {
       document.querySelector('.bs').style = bgBuckideNow
       addToBreadcrumbs(braedCrumbsType,chosenType)
       braedCrumbsColor.innerHTML = 'Черный' 
-
+      leftSidebarBurger.classList.remove('active')
+      leftSidebar.classList.remove('active')
     })
   })
 }
@@ -56,7 +57,8 @@ function colorPicker() {
       document.querySelector('.bs').style = bgBuckideNow
       let colorNow = item.querySelector('.product-color-popup__title').innerHTML
       addToBreadcrumbs(braedCrumbsColor,colorNow)
-
+      leftSidebarBurger.classList.remove('active')
+      leftSidebar.classList.remove('active')
     })
   })
 }
@@ -89,6 +91,9 @@ function sizePicker(){
       const itemChildText = element.firstElementChild.innerHTML
       braedCrumbsSize.innerHTML = itemChildText
       closeAllPopups()
+      leftSidebarBurger.classList.remove('active')
+      leftSidebar.classList.remove('active')
+      
     })
   });
 }

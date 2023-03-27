@@ -767,6 +767,9 @@ opacity: 0;
 .constructor__menu-left__burger{
   display: none;
 }
+.constructor__product-container{
+  overflow: hidden;
+}
 
 @media screen and (max-width:1023px) {
   .constructor__product-container{
@@ -885,5 +888,9 @@ opacity: 0;
     width: 100px;
     height: 100px;
     font-size: 12px;
+  }
+  .constructor{
+    padding-top: 0 !important;
+    min-height: 100%;
   }
 }

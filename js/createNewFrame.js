@@ -126,5 +126,7 @@ function createNewFrame(img) {
   imageRotate.addEventListener("touchstart", () => {
     rotate(imageControls, imageRotate)
   });
+  leftSidebarBurger.classList.remove('active')
+  leftSidebar.classList.remove('active')
 }
 
