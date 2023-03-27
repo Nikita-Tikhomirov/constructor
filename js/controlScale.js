@@ -16,8 +16,16 @@ function controlScaleFunction(newFrame, imageControls, imageScale, imageScaleWid
 
     const initX = newFrame.offsetLeft;
     const initY = newFrame.offsetTop;
-    const startX = event.clientX;
-    const startY = event.clientY;
+    let startX;
+    let startY;
+
+    if (event.touches) {
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+    } else {
+      startX = event.clientX;
+      startY = event.clientY;
+    }
 
     const initW = newFrame.offsetWidth;
     const initH = newFrame.offsetHeight;
