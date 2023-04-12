@@ -13,3 +13,17 @@ function toggleSidebar(button,sidebar){
 
 toggleSidebar(leftSidebarBurger,leftSidebar)
 toggleSidebar(rightSidebarBurger,rightSidebar)
+
+
+const formatSubmenu = document.querySelector('.constructor__menu-item-submenu')
+const openFormatsButton = document.querySelector('.submenu-title')
+
+
+
+function openFormatsSubmenu(submenu,button){
+    button.addEventListener('click',()=>{
+        submenu.classList.add('active')
+    })
+}
+
+openFormatsSubmenu(formatSubmenu,openFormatsButton)

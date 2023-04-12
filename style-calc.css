@@ -373,10 +373,15 @@
   box-shadow: 0.5px 0.5px 4px #00000038;
 }
 
-.product-format:hover.product-format ul {
-  display: block;
 
+@media screen and (min-width: 1024px){
+  .product-format:hover.product-format ul {
+    display: block;
+  
+  }
 }
+
+
 
 .product-format ul li {
   color: #000;
@@ -772,6 +777,16 @@ opacity: 0;
 }
 
 @media screen and (max-width:1023px) {
+
+  .constructor__menu-item-submenu.active{
+    display: block;
+    position: relative;
+    left: auto;
+    top: auto;
+    box-shadow: none;
+    border: none;
+  }
+
   .constructor__product-container{
     height: 570px;
   }

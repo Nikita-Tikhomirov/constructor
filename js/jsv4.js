@@ -6,11 +6,8 @@ formatPickerStart()
 
 function formatPicker() {
   let allFormatOnSide
-  if (sideNow.classList.contains('fs')) {
-    allFormatOnSide = document.querySelectorAll('.product-format-fs .constructor__menu-item-submenu li')
-  } else {
-    allFormatOnSide = document.querySelectorAll('.product-format-bs .constructor__menu-item-submenu li')
-  }
+  allFormatOnSide = document.querySelectorAll('.constructor__menu-item-submenu li')
+  
 
   // console.log(sideNow)
   function actionAfterClickFormat() {
@@ -22,6 +19,7 @@ function formatPicker() {
         createFormatFrame(classToCreateFormatFrame, sideNow);
         leftSidebarBurger.classList.remove('active')
         leftSidebar.classList.remove('active')
+        // add remove class from submenu
       });
     });
   }
