@@ -1,6 +1,12 @@
 function formatPickerStart() {
   createFormatFrame('a3', sideNow)
   priceCalculator(priceNow)
+  // const helperTextStart = 'Передвиньте зеленую рамку в ту область, где хотите расположить свой принт. Затем добавьте изображение, форму или текст'
+
+  // formatHelper(helperTextStart)
+
+  // const startFormat = sideNow.querySelector('.formatWrap.active')
+  // addPulseAnimation(startFormat)
 }
 formatPickerStart()
 
@@ -28,6 +34,8 @@ function formatPicker() {
 }
 
 formatPicker()
+
+
 
 function createFormatFrame(formatClass, container) {
   const activeFrameWrap = document.querySelector('.formatWrap.active');
@@ -60,6 +68,20 @@ function createFormatFrame(formatClass, container) {
   formatContainer.appendChild(formatFrame);
   container.appendChild(formatWrap);
   priceCalculator(priceNow)
+
+  // helper
+  if (addFormatCounter == 0 ) {
+    const helperTextStart = 'Передвиньте зеленую рамку(формат) в ту область, где хотите расположить свой принт. Затем добавьте изображение, форму или текст'
+    formatHelper(helperTextStart)
+  }else if(addFormatCounter == 1){
+    const helperTextStart = 'Для смены области редактирования(формата) нажмите на ту область, которую хотите выбрать'
+    formatHelper(helperTextStart)
+  }
+
+  const startFormat = sideNow.querySelector('.formatWrap.active')
+  addPulseAnimation(startFormat)
+
+  addFormatCounter = addFormatCounter + 1
 }
 
 // Удаление активного класса у соседей

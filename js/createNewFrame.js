@@ -1,6 +1,17 @@
 function createNewFrame(img) {
+  // console.log(sideNow.querySelector('.formatWrap.active'));
+  if(sideNow.querySelector('.formatWrap.active') === null && document.querySelector('.helper') === null ){
+    const textHaveNotFormatText = 'Сначала добавьте формат, выберите в меню слева'
+    formatHelper(textHaveNotFormatText)
+
+    addPulseAnimation(prodFormatMenuWrap)
+  }
+ 
   const format = sideNow.querySelector('.formatWrap.active');
   const container = format.querySelector('.constructor__product-container-image-wrap');
+
+  
+
   const formatInner = format.querySelector('.innerFrame__container');
   const count = document.querySelectorAll('.generated-img-wrap').length;
 
@@ -128,5 +139,16 @@ function createNewFrame(img) {
   });
   leftSidebarBurger.classList.remove('active')
   leftSidebar.classList.remove('active')
+
+
+
+  const textAfterAddImg = 'Вы можете добавить несколько изображений или блоков с текстом. Так же вы можете добавить дополнительные области для принта выбрав формат в меню слева'
+  if (helperImgCounter > 0 ) {
+    
+  }else{
+    formatHelper(textAfterAddImg)
+    helperImgCounter = helperImgCounter + 1
+  }
+
 }
 

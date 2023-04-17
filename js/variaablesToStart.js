@@ -20,3 +20,12 @@ const allButtonsClosePopups = document.querySelectorAll('.closePopupBtn')
 const sizePickerBtn = document.querySelector('.prod-size')
 const sizePopup = document.querySelector('.sizes-popup')
 
+let helperImgCounter = 0
+
+const prodFormatMenuWrap = document.querySelector('.product-format')
+
+
+
+
+const shapesButton = document.querySelector('.addShape')
+const shapePopup = document.querySelector('.shapesPopup')

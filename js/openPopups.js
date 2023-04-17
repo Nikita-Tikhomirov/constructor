@@ -6,4 +6,15 @@ function popups(button, popup) {
 }
 popups(uploadPopupBtn, uploadPopup)
 
+popups(shapesButton, shapePopup)
 
+function closePopupAfterPickShape(){
+  const allShapes = document.querySelectorAll('.popup-images__img-wrap')
+  allShapes.forEach(element => {
+    element.addEventListener('click',()=>{
+      shapePopup.classList.remove('active')
+    })
+  });
+}
+
+closePopupAfterPickShape()
