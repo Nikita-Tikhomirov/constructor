@@ -14,8 +14,10 @@
     <div class="container constructor__cont ">
       <div class="row">
 
-
-        <div class="col-lg-2 constructor__menu-left">
+        <div class="col-lg-2 constructor__menu-left active">
+          <div class="constructor__menu-left__burger active">
+            <span></span><span></span><span></span>
+          </div>
           <div class="constructor__menu-title">Выберите</div>
 
           <ul class="constructor__menu-list">
@@ -28,28 +30,20 @@
             <li class="constructor__menu-item product-format product-format-fs active">
               <span class="submenu-title">Формат</span>
               <ul class="constructor__menu-item-submenu ">
-                <li frameformat="a3" class="">A3</li>
-                <li frameformat="a4v">A4</li>
-                <li frameformat="a5v">A5</li>
+                <li frameformat="a3" class="">A3 (1000р)</li>
+                <li frameformat="a4v">A4 (700р)</li>
+                <li frameformat="a5v">A5 (500р)</li>
 
               </ul>
             </li>
 
-            <li class="constructor__menu-item product-format product-format-bs">
-              <span class="submenu-title">Формат</span>
-              <ul class="constructor__menu-item-submenu ">
-                <li frameformat="a3" class="">A3</li>
-                <li frameformat="a4v">A4</li>
-                <li frameformat="a5v">A5</li>
 
-              </ul>
-            </li>
 
           </ul>
           <div class="constructor__menu-title">Добавьте</div>
           <ul class="constructor__menu-list">
             <li class="constructor__menu-item product-upload-img">Картинку</li>
-            <li class="constructor__menu-item">Фигуру</li>
+            <li class="constructor__menu-item addShape">Фигуру</li>
             <li class="constructor__menu-item addtext_btn">Текст</li>
           </ul>
           <div class="constructor__menu-price-wrap">Цена <span class="price-now">0</span>р</div>
@@ -58,7 +52,9 @@
 
 
 
-        <div class="col-lg-7">
+
+        <div class="col-lg-7 middle-container">
+
           <div class="constructor__breadcrumbs">
             <ul>
               <li>Выбрано:</li>
@@ -68,7 +64,7 @@
             </ul>
           </div>
 
-          <div class="constructor__product-container bg-center-custom fs active" style="background: url([[*tshirtBs]])">
+          <div class="constructor__product-container bg-center-custom fs active" style="background: url([[*tshirtFs]])">
 
 
           </div>
@@ -120,32 +116,33 @@
 
 
 
-            
+
+
             <!-- Выбор цвета -->
             <div class="product-color-popup product-color-popup__tshirts popups">
               <!-- карточка с цветом изделия -->
               <div class="closePopupBtn">x</div>
-                    [[!getImageList?
-                &tvname=`migx_tshirtsColors`
-                &tpl=`migx_tshirtsColors_tpl`
-                &limit=`999`
+              [[!getImageList?
+              &tvname=`migx_tshirtsColors`
+              &tpl=`migx_tshirtsColors_tpl`
+              &limit=`999`
               ]]
             </div>
 
 
             <div class="product-color-popup product-color-popup__hoodys popups">
-                <div class="closePopupBtn">x</div>
               <!-- карточка с цветом изделия -->
+              <div class="closePopupBtn">x</div>
               [[!getImageList?
               &tvname=`migx_hoodyColors`
               &tpl=`migx_tshirtsColors_tpl`
               &limit=`999`
-            ]]
-
+              ]]
             </div>
+
             <div class="product-color-popup product-color-popup__sweetshots popups">
-                <div class="closePopupBtn">x</div>
               <!-- карточка с цветом изделия -->
+              <div class="closePopupBtn">x</div>
               [[!getImageList?
               &tvname=`migx_sweetshotsColors`
               &tpl=`migx_tshirtsColors_tpl`
@@ -168,9 +165,9 @@
                 &tvname=`migx_pickPrint`
                 &tpl=`migx_pickPrint_tpl`
               ]]
-
               </div>
             </div>
+
             <div class="sizes-popup popups">
               <div class="closePopupBtn">x</div>
               <table class="size-table">
@@ -231,12 +228,25 @@
               </table>
             </div>
 
+            <div class="popups shapesPopup">
+              <div class="closePopupBtn">x</div>
+              <div class="popup-images">
+                [[!getImageList?
+                &tvname=`migx_pickPrint`
+                &tpl=`migx_pickPrint_tpl`
+              ]]
+              </div>
+            </div>
+
           </div>
         </div>
 
 
 
         <div class="col-lg-3 constructor__menu-left">
+          <div class="constructor__menu-right__burger">
+            <span></span><span></span><span></span>
+          </div>
           <div class="colorpicker-wrap">
             <div class="colorpicker-wrap__title">
               Выбирите цвет.
@@ -245,7 +255,8 @@
           <!-- <input id="foo" data-jscolor="{value:'rgba(192,160,255,0.5)'}" , onInput="update(this.jscolor)"> -->
           <input type="color" name="head" id="foo" value="#FE4536">
           <!-- <input id="input-text" class="input-text" type="text" placeholder="Ваш текст"> -->
-          <textarea name="printText" id="input-text" cols="30" rows="4" id="input-text" class="input-text" placeholder="Ваш текст"></textarea>
+          <textarea name="printText" id="input-text" cols="30" rows="4" id="input-text" class="input-text"
+            placeholder="Ваш текст"></textarea>
 
           <!-- <em id="pr2" style="display:block; width:100%; height:100px">Ваш цвет</em> -->
 
@@ -253,7 +264,7 @@
             Выбирите шрифт
           </div>
 
-          <select id="input-style" class="input input-font-family"  style='font-family: "Times New Roman";'>
+          <select id="input-style" class="input input-font-family" style='font-family: "Times New Roman";'>
             <option value="Times New Roman" selected="selected">Times New Roman
             </option>
             <option value="Arial" style="font-family: Arial;">Arial</option>
@@ -264,14 +275,21 @@
           <div class="output-text">
             Размер текста
           </div>
-          <input type="range" id="input-font" name="cowbell" 
-          min="8" max="100" value="20" step="2">
+          <input type="range" id="input-font" name="cowbell" min="8" max="100" value="20" step="2">
 
           <div class="output-text">
             Скругление текста
           </div>
-          <input type="range" id="input-circle" name="circle" class="input-circle" 
-          min="0" max="360" value="0" step="1">
+          <label>
+            вверх
+            <input type="checkbox" id="text-curves-up" class="text-curves" name="curves">
+          </label>
+          <label>
+            вниз
+            <input type="checkbox" id="text-curves-down" class="text-curves" name="curves">
+          </label>
+          <input type="range" id="input-circle" name="circle" class="input-circle" min="-50" max="50" value="0"
+            step="1">
 
           <!-- <select id="input-font" class="input">
             <option value="14px" selected="selected">
@@ -296,8 +314,8 @@
     <div class="system" style="display:none">
       <div class="tshirts-bgs">
         <ul>
-          <li>background: url('tshirt.png')</li>
-          <li>background: url('tshirt_bs.png')</li>
+          <li>background: url([[*tshirtFs]])</li>
+          <li>background: url([[*tshirtBs]])</li>
         </ul>
         <ul>
           <li></li>
@@ -352,5 +370,4 @@
 <script src="[[++assets_url]]custom/js/createColorMatrix.js"></script>
 <script src="[[++assets_url]]custom/js/mobileScripts.js"></script>
 
-</html>  
- 
+</html>
