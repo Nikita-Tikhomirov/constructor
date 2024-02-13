@@ -1,16 +1,14 @@
-function createNewFrame(img) {
+function createNewFrame(img, sideNow) {
   // console.log(sideNow.querySelector('.formatWrap.active'));
-  if(sideNow.querySelector('.formatWrap.active') === null && document.querySelector('.helper') === null ){
+  if (sideNow.querySelector('.formatWrap.active') === null && document.querySelector('.helper') === null) {
     const textHaveNotFormatText = 'Сначала добавьте формат, выберите в меню слева'
-    formatHelper(textHaveNotFormatText)
-
+    // formatHelper(textHaveNotFormatText)
     addPulseAnimation(prodFormatMenuWrap)
+    return
   }
- 
+
   const format = sideNow.querySelector('.formatWrap.active');
   const container = format.querySelector('.constructor__product-container-image-wrap');
-
-  
 
   const formatInner = format.querySelector('.innerFrame__container');
   const count = document.querySelectorAll('.generated-img-wrap').length;
@@ -19,11 +17,11 @@ function createNewFrame(img) {
   const activeImgWrap = document.querySelector('.generated-img-wrap.active');
 
   if (activeFrameWrap) activeFrameWrap.classList.remove('active');
-  if (activeImgWrap)  activeImgWrap.classList.remove('active');;
+  if (activeImgWrap) activeImgWrap.classList.remove('active');;
 
   const newFrame = document.createElement('div');
   newFrame.classList.add('generated-img-wrap', formatNow, 'active');
-  
+
   newFrame.id = `count_${count}`
   console.log(newFrame.id);
   if (img.classList.contains('text-area')) {
@@ -81,10 +79,8 @@ function createNewFrame(img) {
     svgWrapToImage.appendChild(imageTosvg)
     newFrame.appendChild(svgWrapToImage)
     container.appendChild(newFrame)
-
     console.log(2);
   }
-
 
   const imageControls = document.createElement('div');
 
@@ -132,23 +128,22 @@ function createNewFrame(img) {
 
   imageRotate.addEventListener("ondragstart", () => { return false });
   imageRotate.addEventListener("mousedown", () => {
-    rotate(imageControls, imageRotate)
+    // rotate(imageControls, imageRotate)
   });
   imageRotate.addEventListener("touchstart", () => {
-    rotate(imageControls, imageRotate)
+    // rotate(imageControls, imageRotate)
   });
   leftSidebarBurger.classList.remove('active')
   leftSidebar.classList.remove('active')
 
 
+  // const textAfterAddImg = 'Вы можете добавить несколько изображений или блоков с текстом. Так же вы можете добавить дополнительные области для принта выбрав формат в меню слева'
+  // if (helperImgCounter > 0) {
 
-  const textAfterAddImg = 'Вы можете добавить несколько изображений или блоков с текстом. Так же вы можете добавить дополнительные области для принта выбрав формат в меню слева'
-  if (helperImgCounter > 0 ) {
-    
-  }else{
-    formatHelper(textAfterAddImg)
-    helperImgCounter = helperImgCounter + 1
-  }
+  // } else {
+  //   // formatHelper(textAfterAddImg)
+  //   helperImgCounter = helperImgCounter + 1
+  // }
 
 }
 

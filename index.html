@@ -8,11 +8,14 @@
   <!-- CSS only -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="style-calc.css">
+  <link rel="stylesheet" href="css/format.css">
+  <link rel="stylesheet" href="css/draggble.css">
+  <link rel="stylesheet" href="css/style-calc.css">
+  <link rel="stylesheet" href="css/swatchy.css">
 </head>
 
 <body>
-  <section class="constructor pt-4">
+  <section id="app" class="constructor pt-4">
     <div class="container constructor__cont ">
       <div class="row">
         <div class="col-lg-2 constructor__menu-left active">
@@ -22,32 +25,27 @@
           <div class="constructor__menu-title">Выберите</div>
 
           <ul class="constructor__menu-list">
-            <li class="constructor__menu-item product-type">
-              Изделие
-            </li>
+            <li class="constructor__menu-item product-type" @click="popupProduct = !popupProduct">Изделие</li>
             <!-- <li class="constructor__menu-item">Возраст</li> -->
-            <li class="constructor__menu-item product-color">Цвет</li>
-            <li class="constructor__menu-item prod-size">Размер</li>
+            <li class="constructor__menu-item product-color" @click="popupColor = !popupColor">Цвет</li>
+            <li class="constructor__menu-item prod-size" @click="popupSize = !popupSize">Размер</li>
             <li class="constructor__menu-item product-format product-format-fs active">
               <span class="submenu-title">Формат</span>
               <ul class="constructor__menu-item-submenu ">
-                <li frameformat="a3" class="">A3 (1000р)</li>
-                <li frameformat="a4v">A4 (700р)</li>
-                <li frameformat="a5v">A5 (500р)</li>
-
+                <li @click="addNewFormat('a3')">A3 (1000р)</li>
+                <li @click="addNewFormat('a4')">A4 (700р)</li>
+                <li @click="addNewFormat('a5')">A5 (500р)</li>
               </ul>
             </li>
-
-
 
           </ul>
           <div class="constructor__menu-title">Добавьте</div>
           <ul class="constructor__menu-list">
-            <li class="constructor__menu-item product-upload-img">Картинку</li>
-            <li class="constructor__menu-item addShape">Фигуру</li>
-            <li class="constructor__menu-item addtext_btn">Текст</li>
+            <li class="constructor__menu-item product-upload-img" @click="popupImage = !popupImage">Картинку</li>
+            <li class="constructor__menu-item addShape" @click="popupShape = !popupShape">Фигуру</li>
+            <li class="constructor__menu-item addtext_btn" @click="addText">Текст</li>
           </ul>
-          <div class="constructor__menu-price-wrap">Цена <span class="price-now">0</span>р</div>
+          <div class="constructor__menu-price-wrap">Цена <span class="price-now">{{ totalPrice }}</span>р</div>
           <div class="constructor__menu-button">Заказать</div>
         </div>
         <div class="col-lg-7 middle-container">
@@ -60,59 +58,68 @@
             </ul>
           </div>
 
-          <div class="constructor__product-container bg-center-custom fs active" style="background: url('tshirt.png')">
-
-
+          <div class="constructor__product-container bg-center-custom fs" :class="{'active' : sideNow === '.fs'}"
+            :style="`background: url(${productTypeFrontImage})`">
+            <Format
+              v-for="(format, i) in frontFormats"
+              :key="format.id"
+              :format="format"
+              :active="selectedElement"
+              @select="selectActiveFormat(format.id)"
+              @remove="removeFormat(format.id)"
+              ></Format>
           </div>
 
-          <div class="constructor__product-container bg-center-custom bs" style="background: url('tshirt_bs.png')">
-
-
+          <div class="constructor__product-container bg-center-custom bs" :class="{'active' : sideNow === '.bs'}"
+            :style="`background: url(${productTypeBackImage})`">
+            <!-- <format
+              v-for="(format, i) in backFormats"
+              :key="`.bs-${format.format}-${i}`"
+              :ids="`.bs-${format.format}-${i}`"
+              :format="format.format"
+              :active="activeFormat"
+              @select="selectActiveFormat(`fs-${format.format}-${i}`)"
+              @remove="removeFormat(i)"
+            ></format> -->
           </div>
+
+          <helper v-if="helperIsShow" :text="helperText" @close="helperIsShow = false"></helper>
+
           <div class="constructor__menu-popups-warp">
             <!-- выбор типа изделия -->
-            <div class="product-type-popup popups">
-              <div class="closePopupBtn">x</div>
+            <div class="product-type-popup popups" :class="{'active' : popupProduct}">
+              <div class="closePopupBtn" @click="popupProduct = false">x</div>
               <!-- карточка с типом изделия -->
-              <div class="product-type-popup__card">
+              <div class="product-type-popup__card"
+                @click="selectProductType('tshirts', 'tshirt.png', 'tshirt_bs.png')">
                 <div class="product-type-popup__img-wrap">
                   <img src="tshirt.png" alt="">
                 </div>
                 <div class="product-type-popup__title">Футболка</div>
-                <div class="system" style="display:none">
-                  <div class="typedFs">background: url('tshirt.png')</div>
-                  <div class="typedBs">background: url('tshirt_bs.png')</div>
-                </div>
               </div>
               <!-- карточка с типом изделия -->
-              <div class="product-type-popup__card">
+              <div class="product-type-popup__card" @click="selectProductType('hoodys', 'hoody.png', 'hoody_bs.png')">
                 <div class="product-type-popup__img-wrap">
                   <img src="hoody.png" alt="">
                 </div>
                 <div class="product-type-popup__title">Толстовка</div>
-                <div class="system" style="display:none">
-                  <div class="typedFs">background: url('hoody.png')</div>
-                  <div class="typedBs">background: url('hoody_bs.png')</div>
-                </div>
               </div>
               <!-- карточка с типом изделия -->
-              <div class="product-type-popup__card">
+              <div class="product-type-popup__card"
+                @click="selectProductType('sweetshots', 'sweetshot.png', 'sweetshot.png')">
                 <div class="product-type-popup__img-wrap">
                   <img src="sweetshot.png" alt="">
                 </div>
                 <div class="product-type-popup__title">Свитшот</div>
-                <div class="system" style="display:none">
-                  <div class="typedFs">background: url('sweetshot.png')</div>
-                  <div class="typedBs">background: url('sweetshot.png')</div>
-                </div>
               </div>
 
 
             </div>
             <!-- Выбор цвета -->
-            <div class="product-color-popup product-color-popup__tshirts popups">
+            <div class="product-color-popup product-color-popup__tshirts popups"
+              :class="{'active' : popupColor && productType === 'tshirts'}">
               <!-- карточка с цветом изделия -->
-              <div class="closePopupBtn">x</div>
+              <div class="closePopupBtn" @click="popupColor = false">x</div>
               <div class="product-color-popup__card">
                 <div class="product-color-popup__img-wrap">
                   <img src="tshirt.png" alt="">
@@ -136,10 +143,10 @@
               </div>
             </div>
 
-
-            <div class="product-color-popup product-color-popup__hoodys popups">
+            <div class="product-color-popup product-color-popup__hoodys popups"
+              :class="{'active' : popupColor && productType === 'hoodys'}">
               <!-- карточка с цветом изделия -->
-              <div class="closePopupBtn">x</div>
+              <div class="closePopupBtn" @click="popupColor = false">x</div>
               <div class="product-color-popup__card">
                 <div class="product-color-popup__img-wrap">
                   <img src="hoody.png" alt="">
@@ -150,6 +157,7 @@
                   <div class="coloredBs">background: url('hoody_bs.png')</div>
                 </div>
               </div>
+
               <!-- карточка с цветом изделия -->
               <div class="product-color-popup__card">
                 <div class="product-color-popup__img-wrap">
@@ -162,10 +170,11 @@
                 </div>
               </div>
             </div>
-            <div class="product-color-popup product-color-popup__sweetshots popups">
+            <div class="product-color-popup product-color-popup__sweetshots popups"
+              :class="{'active' : popupColor && productType === 'sweetshots'}">
+              <div class="closePopupBtn" @click="popupColor = false">x</div>
               <!-- карточка с цветом изделия -->
-              <div class="closePopupBtn">x</div>
-              <div class="product-color-popup__card">
+              <div class="product-color-popup__card" @click="popupColor = false">
                 <div class="product-color-popup__img-wrap">
                   <img src="sweetshot.png" alt="">
                 </div>
@@ -176,7 +185,7 @@
                 </div>
               </div>
               <!-- карточка с цветом изделия -->
-              <div class="product-color-popup__card">
+              <div class="product-color-popup__card" @click="popupColor = false">
                 <div class="product-color-popup__img-wrap">
                   <img src="sweetshot_w.png" alt="">
                 </div>
@@ -188,8 +197,8 @@
               </div>
             </div>
             <!--Загруженные изображения и drug and drop-->
-            <div class="product-upload-img-popup popups">
-              <div class="closePopupBtn">x</div>
+            <div class="product-upload-img-popup popups" :class="{'active' : popupImage}">
+              <div class="closePopupBtn" @click="popupImage = false">x</div>
               <div class="product-upload-img-popup__sidebar">
                 <div class="upload-container">
                   <div class="upload-text">Перетащите или загрузите</div>
@@ -199,48 +208,23 @@
               </div>
 
               <div class="popup-images">
-                <div class="popup-images__img-wrap"><img src="print1.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="test.png" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="test2.png" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
-                <div class="popup-images__img-wrap"><img src="print.jpg" alt=""></div>
+                <div class="popup-images__img-wrap">
+                  <img @click="addImage" src="print1.jpg" alt="">
+                </div>
+                <div class="popup-images__img-wrap">
+                  <img @click="addImage" src="test.png" alt="">
+                </div>
+                <div class="popup-images__img-wrap">
+                  <img @click="addImage" src="test2.png" alt="">
+                </div>
+                <div class="popup-images__img-wrap">
+                  <img @click="addImage" src="print.jpg" alt="">
+                </div>
               </div>
             </div>
 
-            <div class="sizes-popup popups">
-              <div class="closePopupBtn">x</div>
+            <div class="sizes-popup popups" :class="{'active' : popupSize}">
+              <div class="closePopupBtn" @click="popupSize = false">x</div>
               <table class="size-table">
                 <tr>
                   <th>Euro</th>
@@ -299,8 +283,8 @@
               </table>
             </div>
 
-            <div class="popups shapesPopup">
-              <div class="closePopupBtn">x</div>
+            <div class="popups shapesPopup" :class="{'active' : popupShape}">
+              <div class="closePopupBtn" @click="popupShape = false">x</div>
               <div class="popup-images">
                 <div class="popup-images__img-wrap"><img src="print1.jpg" alt=""></div>
                 <div class="popup-images__img-wrap"><img src="test.png" alt=""></div>
@@ -345,8 +329,6 @@
           </div>
         </div>
 
-
-
         <div class="col-lg-3 constructor__menu-left">
           <div class="constructor__menu-right__burger">
             <span></span><span></span><span></span>
@@ -356,8 +338,12 @@
               Выбирите цвет.
             </div>
           </div>
-          <!-- <input id="foo" data-jscolor="{value:'rgba(192,160,255,0.5)'}" , onInput="update(this.jscolor)"> -->
-          <input type="color" name="head" id="foo" value="#FE4536">
+
+          <div class="swatchy-wrap">
+            <input type="text" name="head" id="foo" class="swatchy-output swatchy-display swatchy-trigger"
+              style="background-color: #FE4536; color: #FE4536;" readonly>
+          </div>
+
           <!-- <input id="input-text" class="input-text" type="text" placeholder="Ваш текст"> -->
           <textarea name="printText" id="input-text" cols="30" rows="4" id="input-text" class="input-text"
             placeholder="Ваш текст"></textarea>
@@ -405,8 +391,8 @@
           </select> -->
 
           <div class="side-picker-wrap">
-            <div class="side-pick-btn fsb active">Грудь</div>
-            <div class="side-pick-btn bsb">Спина</div>
+            <div class="side-pick-btn fsb" :class="{'active' : sideNow === '.fs'}" @click="sideNow = '.fs'">Грудь</div>
+            <div class="side-pick-btn bsb" :class="{'active' : sideNow === '.bs'}" @click="sideNow = '.bs'">Спина</div>
           </div>
 
         </div>
@@ -451,26 +437,39 @@
     </div>
   </section>
 
-
-  <script src="js/variaablesToStart.js"></script>
+  <!-- <script src="js/variaablesToStart.js"></script>
   <script src="js/priceCalculator.js"></script>
   <script src="js/openPopups.js"></script>
   <script src="js/closePopups.js"></script>
-  <script src="js/dragNdrop.js"></script>
-  <script src="js/helpers.js"></script>
-  <script src="js/jsv4.js"></script>
-  <script src="js/uploadImages.js"></script>
+  <script src="js/dragNdrop.js"></script> -->
+  <!-- <script src="js/jsv4.js"></script> -->
+  <!-- <script src="js/uploadImages.js"></script>
   <script src="js/createNewFrame.js"></script>
   <script src="js/pickImgFromPopup.js"></script>
   <script src="js/controlScale.js"></script>
-  <script src="js/deletePrint.js"></script>
-  <script src="js/sidePicker.js"></script>
-  <script src="js/typeAndColorPicker.js"></script>
-  <script src="js/rotate.js"></script>
+  <script src="js/deletePrint.js"></script> -->
+  <!-- <script src="js/typeAndColorPicker.js"></script> -->
+  <!-- <script src="js/rotate.js"></script>
   <script src="js/textRedactor.js"></script>
   <script src="js/select.js"></script>
   <script src="js/createColorMatrix.js"></script>
   <script src="js/mobileScripts.js"></script>
+  <script src="js/swatchy.js"></script> -->
+
+  <!-- <script src="js/assets/vector.js"></script>
+  <script src="js/assets/matrix.js"></script>
+  <script src="js/assets/helper.js"></script> -->
+
+  <script src="https://unpkg.com/vue@next"></script>
+<!-- 
+  <script src="js/ddr.js"></script>
+  <script src="js/appDraggble.js"></script>
+  <script src="js/appText.js"></script>
+  <script src="js/appImage.js"></script>
+  <script src="js/appFormat.js"></script>
+  <script src="js/appHelper.js"></script> -->
+  <script src="js/app.js"></script>
+
 </body>
 
 </html>

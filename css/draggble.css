@@ -1,0 +1,58 @@
+.yoyoo-ddr {
+  position: absolute;
+  border: 1px dashed #607d8b;
+  translate: -50% 0;
+}
+
+.yoyoo-ddr.active {
+  border: 1px dashed #84b77c;
+}
+
+.yoyoo-ddr > img {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ==================== */
+
+.yoyoo-ddr .resize-handler.tm {
+  left: 50%
+}
+
+.yoyoo-ddr .resize-handler.r {
+  top: 50%
+}
+
+.yoyoo-ddr .resize-handler.bm {
+  left: 50%
+}
+
+.yoyoo-ddr .resize-handler.l {
+  top: 50%;
+  cursor: pointer
+}
+
+.yoyoo-ddr .resize-handler,.yoyoo-ddr .rotate-handler {
+  display: none;
+  position: absolute;
+  border: 1px solid #607d8b;
+  background: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 50%
+}
+
+.yoyoo-ddr .rotate-handler {
+  left: 50%;
+  cursor: crosshair
+}
+
+.yoyoo-ddr.active>.resize-handler-wrapper>.resize-handler,.yoyoo-ddr.active>.rotate-handler {
+  display: inline-block
+}
+
+.yoyoo-ddr .bl,.yoyoo-ddr .br,.yoyoo-ddr .tl,.yoyoo-ddr .tr {
+  background: #607d8b
+}
+

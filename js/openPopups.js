@@ -1,20 +1,21 @@
 //  функция для попапов 
-function popups(button, popup) {
-  button.addEventListener('click', () => {
-    popup.classList.add('active');
-  });
-}
-popups(uploadPopupBtn, uploadPopup)
+// function popups(button, popup) {
+//   button.addEventListener('click', () => {
+//     popup.classList.add('active');
+//   });
+// }
 
-popups(shapesButton, shapePopup)
+// popups(uploadPopupBtn, uploadPopup)
 
-function closePopupAfterPickShape(){
-  const allShapes = document.querySelectorAll('.popup-images__img-wrap')
-  allShapes.forEach(element => {
-    element.addEventListener('click',()=>{
-      shapePopup.classList.remove('active')
-    })
-  });
-}
+// popups(shapesButton, shapePopup)
 
-closePopupAfterPickShape()
+// function closePopupAfterPickShape(){
+//   const allShapes = document.querySelectorAll('.popup-images__img-wrap')
+//   allShapes.forEach(element => {
+//     element.addEventListener('click',()=>{
+//       shapePopup.classList.remove('active')
+//     })
+//   });
+// }
+
+// closePopupAfterPickShape()

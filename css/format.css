@@ -1,0 +1,79 @@
+.formatWrap {
+  /* border: 1px #84b77c dashed; */
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.formatWrap:active {
+  cursor: grabbing;
+}
+
+/* .formatWrap:not(.active) {
+  opacity: .8;
+  filter: grayscale(1);
+} */
+
+.formatWrap.a3 {
+  width: 150px;
+  height: 250px;
+}
+
+.formatWrap__container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* overflow: hidden; */
+  /* pointer-events: none; */
+}
+
+.formatWrap.a4 {
+  width: 120px;
+  height: 180px;
+}
+
+.formatWrap.a5 {
+  width: 100px;
+  height: 150px;
+}
+
+/* .formatWrap:not(.active) {
+  border: 1px #84b77c59 dashed;
+} */
+
+/* .formatWrap:not(.active) .closeFormatBtn {
+  opacity: 0;
+}
+
+.formatWrap:not(.active) .rotateFormatBtn {
+  opacity: 0;
+} */
+
+
+.formatWrap:not(.active) .image-controls {
+  opacity: 0;
+}
+
+@media screen and (max-width:768px) {
+  .formatWrap.a3 {
+    width: 120px;
+    height: 200px;
+    top: 35%;
+  }
+
+  .formatWrap.a4 {
+    width: 100px;
+    height: 150px;
+    top: 35%;
+
+  }
+
+  .formatWrap.a5 {
+    width: 80px;
+    height: 120px;
+    top: 35%;
+  }
+}

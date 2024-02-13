@@ -1,113 +1,113 @@
 function dragNdropFormat(formatFrameActive) {
-    let isDragging = false;
-    let currentX;
-    let currentY;
-    let initialX;
-    let initialY;
-    let xOffset = 0;
-    let yOffset = 0;
-    formatFrameActive.addEventListener("ondragstart", () => { return false });
-    formatFrameActive.addEventListener("mousedown", dragStart);
-    formatFrameActive.addEventListener("mouseup", dragEnd);
-    formatFrameActive.addEventListener("mouseout", dragEnd);
-    formatFrameActive.addEventListener("mousemove", drag);
+  let isDragging = false;
+  let currentX;
+  let currentY;
+  let initialX;
+  let initialY;
+  let xOffset = 0;
+  let yOffset = 0;
+  formatFrameActive.addEventListener("ondragstart", () => { return false });
+  formatFrameActive.addEventListener("mousedown", dragStart);
+  formatFrameActive.addEventListener("mouseup", dragEnd);
+  formatFrameActive.addEventListener("mouseout", dragEnd);
+  formatFrameActive.addEventListener("mousemove", drag);
 
-    formatFrameActive.addEventListener("touchstart", dragStart);
-    formatFrameActive.addEventListener("touchend", dragEnd);
-    formatFrameActive.addEventListener("touchmove", drag);
+  formatFrameActive.addEventListener("touchstart", dragStart);
+  formatFrameActive.addEventListener("touchend", dragEnd);
+  formatFrameActive.addEventListener("touchmove", drag);
 
-    function dragStart(e) {
-        const activeFrameWrap = document.querySelector(`.${formatFrameActive.classList[0]}.active`);
-        if (activeFrameWrap) activeFrameWrap.classList.remove('active');
-        formatFrameActive.classList.add('active');
+  function dragStart(e) {
+    // const activeFrameWrap = document.querySelector(`.${formatFrameActive.classList[0]}.active`);
+    // if (activeFrameWrap) activeFrameWrap.classList.remove('active');
+    // formatFrameActive.classList.add('active');
 
-        if (e.target === formatFrameActive || e.target.classList.contains('innerFrame__container') || e.target.classList.contains('formatWrap__container')) {
-            if (e.touches) {
-                initialX = e.clientX - xOffset || e.touches[0].clientX - xOffset;
-                initialY = e.clientY - yOffset || e.touches[0].clientY - yOffset;
-            } else {
-                initialX = e.clientX - xOffset;
-                initialY = e.clientY - yOffset;
-            }
-            isDragging = true;
-        }
-
-
-        // Передаем Дефолтные значения в инпуты
-        let textareaInside = formatFrameActive.querySelector('.generated-img-wrap.active .text-area')
-
-        if (!textareaInside == '') {
-
-            let inputText = document.querySelector('.input-text')
-            let inputColor = document.querySelector('#foo')
-            let inputFamily = document.querySelector('.input-font-family')
-            let inputSize = document.querySelector('#input-font')
-
-            updateTextMenu(inputColor, inputText, inputFamily, inputSize, textareaInside)
-
-        }
+    if (e.target === formatFrameActive || e.target.classList.contains('innerFrame__container') || e.target.classList.contains('formatWrap__container')) {
+      if (e.touches) {
+        initialX = e.clientX - xOffset || e.touches[0].clientX - xOffset;
+        initialY = e.clientY - yOffset || e.touches[0].clientY - yOffset;
+      } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+      }
+      isDragging = true;
     }
 
-    function dragEnd(e) {
-        isDragging = false;
+
+    // Передаем Дефолтные значения в инпуты
+    let textareaInside = formatFrameActive.querySelector('.generated-img-wrap.active .text-area')
+
+    if (!textareaInside == '') {
+
+      let inputText = document.querySelector('.input-text')
+      let inputColor = document.querySelector('#foo')
+      let inputFamily = document.querySelector('.input-font-family')
+      let inputSize = document.querySelector('#input-font')
+
+      updateTextMenu(inputColor, inputText, inputFamily, inputSize, textareaInside)
+
     }
+  }
 
-    function drag(e) {
-        if (isDragging) {
-            e.preventDefault();
+  function dragEnd(e) {
+    isDragging = false;
+  }
 
-            if (e.touches) {
-                currentX = e.clientX - initialX || e.touches[0].clientX - initialX;
-                currentY = e.clientY - initialY || e.touches[0].clientY - initialY;
-            } else {
-                currentX = e.clientX - initialX;
-                currentY = e.clientY - initialY;
-            }
+  function drag(e) {
+    if (isDragging) {
+      e.preventDefault();
 
-            xOffset = currentX;
-            yOffset = currentY;
+      if (e.touches) {
+        currentX = e.clientX - initialX || e.touches[0].clientX - initialX;
+        currentY = e.clientY - initialY || e.touches[0].clientY - initialY;
+      } else {
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+      }
 
-            setTranslate(currentX, currentY, formatFrameActive);
+      xOffset = currentX;
+      yOffset = currentY;
 
-            if (formatFrameActive.classList.contains('image-controls')) {
-                const countId = formatFrameActive.getAttribute('data-count');
-                const image = formatFrameActive.parentElement.parentElement.querySelector(`#${countId}`);
-                setTranslate(currentX, currentY, image);
-            }
-        }
+      setTranslate(currentX, currentY, formatFrameActive);
+
+      if (formatFrameActive.classList.contains('image-controls')) {
+        const countId = formatFrameActive.getAttribute('data-count');
+        const image = formatFrameActive.parentElement.parentElement.querySelector(`#${countId}`);
+        setTranslate(currentX, currentY, image);
+      }
     }
+  }
 
-    function setTranslate(xPos, yPos, el) {
-        el.style.setProperty('--translate', `${xPos}px,${yPos}px,0`);
-    }
+  function setTranslate(xPos, yPos, el) {
+    el.style.setProperty('--translate', `${xPos}px,${yPos}px,0`);
+  }
 }
 
 function updateTextMenu(colorInput, textArea, fontFamilySelect, sizeRange, textareaInside) {
-    textArea.value = textareaInside.textContent
+  textArea.value = textareaInside.textContent
 
-    let colorTextNow = textareaInside.style.color
+  let colorTextNow = textareaInside.style.color
 
-    function getRGBValues(rgbString) {
-        let rgbValues = rgbString.replace(/[^\d,]/g, '').split(',');
-        let [r, g, b] = rgbValues;
-        return { r, g, b };
-    }
+  function getRGBValues(rgbString) {
+    let rgbValues = rgbString.replace(/[^\d,]/g, '').split(',');
+    let [r, g, b] = rgbValues;
+    return { r, g, b };
+  }
 
-    let { r, g, b } = getRGBValues(colorTextNow);
+  let { r, g, b } = getRGBValues(colorTextNow);
 
-    r = Number(r);
-    g = Number(g);
-    b = Number(b);
+  r = Number(r);
+  g = Number(g);
+  b = Number(b);
 
-    function rgbToHex(r1, g1, b1) {
-        return "#" + ((1 << 24) + (r1 << 16) + (g1 << 8) + b1).toString(16).slice(1).toUpperCase();
-    }
+  function rgbToHex(r1, g1, b1) {
+    return "#" + ((1 << 24) + (r1 << 16) + (g1 << 8) + b1).toString(16).slice(1).toUpperCase();
+  }
 
-    colorInput.value = rgbToHex(r, g, b)
+  colorInput.value = rgbToHex(r, g, b)
 
-    fontFamilySelect.value = textareaInside.style.fontFamily.replace(new RegExp('"','g'),"")
+  fontFamilySelect.value = textareaInside.style.fontFamily.replace(new RegExp('"', 'g'), "")
 
-    fontFamilySelect.style.fontFamily = textareaInside.style.fontFamily
+  fontFamilySelect.style.fontFamily = textareaInside.style.fontFamily
 }
 
 

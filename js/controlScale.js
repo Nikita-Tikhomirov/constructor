@@ -1,13 +1,13 @@
 function controlScaleFunction(newFrame, imageControls, imageScale, imageScaleWidth, imageScaleHeight) {
-  imageScaleWidth.addEventListener('ondragstart', () => {return false})
+  imageScaleWidth.addEventListener('ondragstart', () => { return false })
   imageScaleWidth.addEventListener('mousedown', resize)
   imageScaleWidth.addEventListener('touchstart', resize)
 
-  imageScaleHeight.addEventListener('ondragstart', () => {return false})
+  imageScaleHeight.addEventListener('ondragstart', () => { return false })
   imageScaleHeight.addEventListener('mousedown', resize)
   imageScaleHeight.addEventListener('touchstart', resize)
 
-  imageScale.addEventListener('ondragstart', () => {return false})
+  imageScale.addEventListener('ondragstart', () => { return false })
   imageScale.addEventListener('mousedown', resize)
   imageScale.addEventListener('touchstart', resize)
 
@@ -82,7 +82,7 @@ function controlScaleFunction(newFrame, imageControls, imageScale, imageScaleWid
         newSizes(initW, newH);
         // newPosition(newY, newX);
       } else {
-        const scale = Math.max(newW/initW, newH/initH);
+        const scale = Math.max(newW / initW, newH / initH);
         newW = scale * initW;
         newH = scale * initH;
         newSizes(newW, newH);
