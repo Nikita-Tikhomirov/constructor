@@ -7,7 +7,7 @@ function addPulseAnimation(elementAnim) {
 }
 
 const Format = {
-  props: ['format', 'active'],
+  props: ['format', 'active', 'texts'],
   components: {ddr, Text, Image},
   data() {
     return {
@@ -20,10 +20,12 @@ const Format = {
   },
 
   created() {
-    if (!this.format.transform) {
-      this.format.transform = {
-        x: 0, y: 0, width: this.formats[this.format.format].w, height: this.formats[this.format.format].h, rotation: 0
-      }
+    this.format.transform = {
+      x: 0,
+      y: 0,
+      width: this.formats[this.format.format].w,
+      height: this.formats[this.format.format].h,
+      rotation: 0
     }
   },
 
@@ -44,7 +46,7 @@ const Format = {
         @onMouseDown="handleMouseDown"
       >
         <div ref="drag" :style="rotate" class="formatWrap__container">
-          <Text v-for="text in format.texts" :text="text"></Text>
+          <Text v-for="text in texts" :text="text" @click="$emit('selecttext', text.id)"></Text>
           <Image v-for="image in format.images" :image="image"></Image>
         </div>
       </ddr>

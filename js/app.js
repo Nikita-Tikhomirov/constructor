@@ -8,8 +8,8 @@ const App = {
     return {
       selectedElement: {
         format: '.fs-a3-0',
-        text: null,
-        image: null,
+        text: 0,
+        image: null
       },
 
       sideNow: '.fs',
@@ -20,11 +20,20 @@ const App = {
           id: '.fs-a3-0',
           format: 'a3',
           transform: {x: 0, y: 0, width: 150, height: 250, rotation: 0},
-          images: [],
-          texts: []
         }
       ],
       backFormats: [],
+
+      texts: [
+        {
+          id: 0,
+          text: '',
+          color: '#FE4536',
+          font: 'Times New Roman',
+          size: '8'
+        }
+      ],
+      images: [],
       
       productType: 'tshirts',
       productTypeFrontImage: 'tshirt.png',
@@ -50,11 +59,13 @@ const App = {
     },
 
     addNewFormat(format) {
+      console.log(this.frontFormats.length);
       if (this.sideNow === '.fs') {
-        const key = `${this.sideNow}-${format}-${Math.random()}`
+        const key = `.${this.sideNow}-${format}-${this.frontFormats.length}`
         this.selectedElement.format = key
         this.frontFormats.push({
-          id: key, format: format,
+          id: key,
+          format: format,
           transform: {x: 0, y: 0, width: 150, height: 250, rotation: 0},
           images: [],
           texts: []
@@ -87,24 +98,29 @@ const App = {
     selectActiveFormat(id) {
       this.selectedElement.format = id
     },
+    selectActiveText(id) {
+      this.selectedElement.text = id
+    },
 
     addText() {
-      this.frontFormats.find((el) => el.id === this.selectedElement.format)
-        .texts.push({
-          text: 'Ваш текст',
-          color: '#FE4536',
-          font: 'Times New Roman',
-          transform: {x: 0, y: 0, width: 100, height: 100, rotation: 0}
-        })
+      this.texts.push({
+        id: this.texts.length,
+        format: this.selectedElement.format,
+        text: 'Ваш текст',
+        color: '#FE4536',
+        font: 'Times New Roman',
+        size: '16',
+        transform: {x: 0, y: 0, width: 100, height: 50, rotation: 0}
+      })
     },
 
     addImage(e) {
       this.popupImage = false
-      this.frontFormats.find((el) => el.id === this.selectedElement.format)
-        .images.push({
-          src: e.target.src,
-          transform: {x: 0, y: 0, width: 100, height: 100, rotation: 0}
-        })
+      this.images.push({
+        id: this.images.length,
+        src: e.target.src,
+        transform: {x: 0, y: 0, width: 100, height: 50, rotation: 0}
+      })
     },
   },
 }

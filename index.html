@@ -65,9 +65,11 @@
               :key="format.id"
               :format="format"
               :active="selectedElement"
+              :texts="texts.filter(text => text.format === format.id)"
               @select="selectActiveFormat(format.id)"
+              @selecttext="e => selectActiveText(e)"
               @remove="removeFormat(format.id)"
-              ></Format>
+            ></Format>
           </div>
 
           <div class="constructor__product-container bg-center-custom bs" :class="{'active' : sideNow === '.bs'}"
@@ -345,7 +347,14 @@
           </div>
 
           <!-- <input id="input-text" class="input-text" type="text" placeholder="Ваш текст"> -->
-          <textarea name="printText" id="input-text" cols="30" rows="4" id="input-text" class="input-text"
+          <textarea
+            name="printText"
+            id="input-text"
+            cols="30"
+            rows="4"
+            id="input-text"
+            class="input-text"
+            v-model="texts[selectedElement.text].text"
             placeholder="Ваш текст"></textarea>
 
           <!-- <em id="pr2" style="display:block; width:100%; height:100px">Ваш цвет</em> -->
@@ -354,7 +363,12 @@
             Выбирите шрифт
           </div>
 
-          <select id="input-style" class="input input-font-family" style='font-family: "Times New Roman";'>
+          <select
+            id="input-style"
+            class="input input-font-family"
+            style='font-family: "Times New Roman";'
+            v-model="texts[selectedElement.text].font"
+          >
             <option value="Times New Roman" selected="selected">Times New Roman
             </option>
             <option value="Arial" style="font-family: Arial;">Arial</option>
@@ -365,7 +379,14 @@
           <div class="output-text">
             Размер текста
           </div>
-          <input type="range" id="input-font" name="cowbell" min="8" max="100" value="20" step="2">
+          <input
+            type="range"
+            id="input-font"
+            name="cowbell"
+            min="8" max="100"
+            value="20" step="2"
+            v-model="texts[selectedElement.text].size"
+          >
 
           <div class="output-text">
             Скругление текста
@@ -456,18 +477,19 @@
   <script src="js/mobileScripts.js"></script>
   <script src="js/swatchy.js"></script> -->
 
-  <!-- <script src="js/assets/vector.js"></script>
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  
+  <script src="js/assets/vector.js"></script>
   <script src="js/assets/matrix.js"></script>
-  <script src="js/assets/helper.js"></script> -->
+  <script src="js/assets/helper.js"></script>
 
-  <script src="https://unpkg.com/vue@next"></script>
-<!-- 
   <script src="js/ddr.js"></script>
   <script src="js/appDraggble.js"></script>
   <script src="js/appText.js"></script>
   <script src="js/appImage.js"></script>
   <script src="js/appFormat.js"></script>
-  <script src="js/appHelper.js"></script> -->
+  <script src="js/appHelper.js"></script>
   <script src="js/app.js"></script>
 
 </body>
